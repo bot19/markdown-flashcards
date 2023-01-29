@@ -1,11 +1,13 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
-</h1>
+# Software Engineering Flashcards
+
+Flashcard app for software engineering terms and concepts
+
+## 🖥️ Tech
+
+1. Gatsby.js (react, TS, graphql, SASS)
+2. Tachyons CSS
+
+# Gatsby minimal TypeScript starter
 
 ## 🚀 Quick start
 
@@ -52,7 +54,3 @@
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
 [<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
-
-# software-eng-flashcards
-
-Flashcard app for software engineering terms and concepts
