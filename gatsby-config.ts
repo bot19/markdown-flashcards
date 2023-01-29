@@ -38,6 +38,14 @@ const config: GatsbyConfig = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "questions",
+        path: "./src/questions/",
+      },
+      __key: "questions",
+    },
   ],
 };
 

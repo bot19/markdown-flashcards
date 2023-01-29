@@ -7,6 +7,13 @@ Flashcard app for software engineering terms and concepts
 1. Gatsby.js (react, TS, graphql, SASS)
 2. Tachyons CSS
 
+## 📄 How to use
+
+1. Coming soon...
+
+<br>
+<br>
+
 # Gatsby minimal TypeScript starter
 
 ## 🚀 Quick start
