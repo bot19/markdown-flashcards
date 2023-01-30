@@ -3,21 +3,21 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Link } from "gatsby";
 import "../css/styles.scss";
 
-const IndexPage: React.FC<PageProps> = () => {
+const QuizEndPage: React.FC<PageProps> = () => {
   return (
     <main>
-      <h1>Software Engineering Flashcards</h1>
+      <h1>Quiz end page</h1>
       <p>Some description</p>
-      <Link to="/quiz">Start</Link>
+      <Link to="/">Restart</Link>
     </main>
   );
 };
 
-export default IndexPage;
+export default QuizEndPage;
 
 export const Head: HeadFC = () => (
   <>
-    <title>Quiz Start</title>
+    <title>Quiz End</title>
     <meta name="description" content="Your description" />
   </>
 );
