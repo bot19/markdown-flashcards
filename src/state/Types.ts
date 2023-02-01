@@ -1,4 +1,5 @@
 type QuestionsArr = string[];
+export type QuestionsDataArr = { name: string; id: string }[];
 
 export type ReducerState = {
   general: {
@@ -28,7 +29,14 @@ export type ReducerState = {
   };
 };
 
-export type ReActionDefault = {
+type ActionDefault = {
   type: string;
   value: string;
 };
+
+type ActionStartQuizUpdate = {
+  type: "UPDATE_QUIZ_INIT";
+  value: QuestionsDataArr;
+};
+
+export type ReducerAction = ActionStartQuizUpdate | ActionDefault;
