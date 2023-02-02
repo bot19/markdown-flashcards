@@ -6,6 +6,9 @@ export const reducer = (state: ReducerState, action: ReducerAction) => {
     case "UPDATE_QUIZ_INIT":
       return { ...updateQuizInit(state, action.value as QuestionsDataArr) };
 
+    case "UPDATE_QUIZ_START":
+      return { ...state };
+
     default:
       return { ...state };
   }

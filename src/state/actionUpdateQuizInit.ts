@@ -1,4 +1,5 @@
 import { QuestionsDataArr, ReducerState } from "./Types";
+import { APP_CONFIG } from "../config";
 
 /**
  * update state on quiz load / init
@@ -9,11 +10,23 @@ export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: QuestionsDataArr
 ) => {
-  // current quiz update: allQuestions
+  const newState = { ...state };
 
-  // current session update: sessionQuestions
+  // TODO: shuffle questions in future
+  // current quiz update: allQuestions; the basis of almost all state
+  newState.currentQuiz.allQuestions = QuestionsDataArr.map((q) => q.name);
 
-  // current answer update: key, nextQuestionKey, prevQuestionKey
+  // current session update: sessionQuestions; setup session data/Qs
+  newState.currentSession.sessionQuestions = [
+    ...newState.currentQuiz.allQuestions,
+  ].splice(0, APP_CONFIG.questionsEachSession);
 
-  return { ...state };
+  // current answer update: key, nextQuestionKey, prevQuestionKey; Q nav
+  newState.currentAnswer.nextQuestionKey =
+    newState.currentSession.sessionQuestions[0];
+
+  // set current quiz #
+  newState.currentQuiz.number = newState.general.timesQuizCompleted + 1;
+
+  return newState;
 };

@@ -3,7 +3,10 @@ import type { HeadFC, PageProps } from "gatsby";
 import { Link } from "gatsby";
 import "../css/styles.scss";
 
-const QuizEndPage: React.FC<PageProps> = () => {
+/**
+ *
+ */
+const AboutPage: React.FC<PageProps> = () => {
   return (
     <main>
       <h1>Quiz end page</h1>
@@ -13,7 +16,7 @@ const QuizEndPage: React.FC<PageProps> = () => {
   );
 };
 
-export default QuizEndPage;
+export default AboutPage;
 
 export const Head: HeadFC = () => (
   <>
