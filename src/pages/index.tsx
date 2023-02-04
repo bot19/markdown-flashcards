@@ -12,12 +12,15 @@ const QuizPage: React.FC<PageProps> = ({ data }) => {
 
   console.log("questions data", data, state);
 
+  // flow: (1) start quiz
   if (state.general.quizStatus === "START")
     return <QuizStart {...{ state, dispatch }} />;
 
+  // flow: (3) finished quiz
   if (state.general.quizStatus === "END")
     return <QuizEnd {...{ state, dispatch }} />;
 
+  // flow: (2) quiz session
   return <QuizSession {...{ state, dispatch }} />;
 };
 

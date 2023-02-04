@@ -1,4 +1,4 @@
-import { QuestionsDataArr, ReducerState } from "./Types";
+import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
 import { APP_CONFIG } from "../config";
 
 /**
@@ -10,11 +10,37 @@ export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: QuestionsDataArr
 ) => {
-  const newState = { ...state };
+  const allQuestions = QuestionsDataArr.map((q) => q.name);
 
-  // TODO: shuffle questions in future
-  // current quiz update: allQuestions; the basis of almost all state
-  newState.currentQuiz.allQuestions = QuestionsDataArr.map((q) => q.name);
+  const newState = {
+    general: {
+      ...state.general,
+      // 1-2: updated every init in case config changed
+      questionsEachSession: APP_CONFIG.questionsEachSession,
+    },
+    currentQuiz: {
+      ...state.currentQuiz,
+      // 2-1: could have restart from quiz completion, ensure quiz # correct
+      number: state.general.timesQuizCompleted + 1,
+      // 2-2: update Qs incase new Qs added
+      // TODO: shuffle Qs in future
+      allQuestions,
+      // 2-5: initialise OR re-calc as allQuestions updated
+      // TODO: re-calc to ensure new Qs added
+      questionsRemaining: updateQsRemaining(
+        allQuestions,
+        state.currentQuiz.questionsRemaining
+      ),
+      // 2-6
+      // 2-7
+    },
+    currentSession: {
+      ...state.currentSession,
+    },
+    currentAnswer: {
+      ...state.currentAnswer,
+    },
+  };
 
   // current session update: sessionQuestions; setup session data/Qs
   newState.currentSession.sessionQuestions = [
@@ -29,4 +55,19 @@ export const updateQuizInit = (
   newState.currentQuiz.number = newState.general.timesQuizCompleted + 1;
 
   return newState;
+};
+
+/**
+ * 2-5: update questionsRemaining, ensure new Qs added
+ * empty arr = 1st OR current quiz done = allQuestions
+ * items in arr = quiz in progress = add new Qs
+ */
+const updateQsRemaining = (
+  allQuestions: QuestionsArr,
+  qsRemaining: QuestionsArr
+) => {
+  if (!qsRemaining.length) return [...allQuestions];
+
+  // TODO: add new questions to existing qsRemaining arr
+  return [...allQuestions];
 };

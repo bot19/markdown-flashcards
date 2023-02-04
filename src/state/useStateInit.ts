@@ -7,13 +7,13 @@ const initialStateDefault = initialState;
 export const useStateInit = (data) => {
   const isInit = useRef(true);
 
-  // TODO: 1: check if state in localStorage, use that
+  // TODO: 1: setup state obj from localStorage OR default
   const initialState = null || initialStateDefault;
 
-  // 1b: otherwise, initialise state
+  // 2: initialise state
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // 2: update initial state with new data/content
+  // 3: update initial state with new data/content
   useEffect(() => {
     if (isInit.current) {
       dispatch({
