@@ -1,16 +1,27 @@
 import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
 import { APP_CONFIG } from "../config";
+import { initArrIfEmpty } from "../helpers";
 
 /**
  * update state on quiz load / init
  *
  * note: diff to actually starting the quiz session, it's the next state update
+ * some init state values already exist from initialState
+ * however values related to Q data need to be hydrated here
  */
 export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: QuestionsDataArr
 ) => {
   const allQuestions = QuestionsDataArr.map((q) => q.name);
+  const questionsRemaining = updateQsRemaining(
+    allQuestions,
+    state.currentQuiz.questionsRemaining
+  );
+  const sessionQuestions = initArrIfEmpty(
+    state.currentSession.sessionQuestions,
+    [...allQuestions].splice(0, APP_CONFIG.questionsEachSession)
+  );
 
   const newState = {
     general: {
@@ -27,32 +38,33 @@ export const updateQuizInit = (
       allQuestions,
       // 2-5: initialise OR re-calc as allQuestions updated
       // TODO: re-calc to ensure new Qs added
-      questionsRemaining: updateQsRemaining(
-        allQuestions,
-        state.currentQuiz.questionsRemaining
+      questionsRemaining,
+      // 2-6: update as questionsEachSession & allQuestions # can change
+      sessionsToCompleteQuiz: Math.ceil(
+        allQuestions.length / APP_CONFIG.questionsEachSession
       ),
-      // 2-6
-      // 2-7
+      // 2-7: update as questionsEachSession & questionsRemaining # can change
+      sessionsRemaining: Math.ceil(
+        questionsRemaining.length / APP_CONFIG.questionsEachSession
+      ),
     },
     currentSession: {
       ...state.currentSession,
+      // 3-2: init session Qs if need OR localStorage
+      sessionQuestions,
+      // 3-5
+      // TODO: exception, could be on last Q & reload, this will be []
+      questionsRemaining: initArrIfEmpty(
+        state.currentSession.questionsRemaining,
+        sessionQuestions
+      ),
     },
     currentAnswer: {
       ...state.currentAnswer,
+      // 4-3: 1st Q of current session
+      nextQuestionKey: sessionQuestions[0],
     },
   };
-
-  // current session update: sessionQuestions; setup session data/Qs
-  newState.currentSession.sessionQuestions = [
-    ...newState.currentQuiz.allQuestions,
-  ].splice(0, APP_CONFIG.questionsEachSession);
-
-  // current answer update: key, nextQuestionKey, prevQuestionKey; Q nav
-  newState.currentAnswer.nextQuestionKey =
-    newState.currentSession.sessionQuestions[0];
-
-  // set current quiz #
-  newState.currentQuiz.number = newState.general.timesQuizCompleted + 1;
 
   return newState;
 };
