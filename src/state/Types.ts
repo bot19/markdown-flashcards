@@ -69,9 +69,16 @@ type ActionDefault = {
   value: string;
 };
 
-type ActionStartQuizUpdate = {
+type ActionUpdateQuizInit = {
   type: "UPDATE_QUIZ_INIT";
   value: QuestionsDataArr;
 };
 
-export type ReducerAction = ActionStartQuizUpdate | ActionDefault;
+type ActionUpdateQuizSessionStart = {
+  type: "UPDATE_QUIZ_SESSION_START";
+};
+
+export type ReducerAction =
+  | ActionUpdateQuizInit
+  | ActionUpdateQuizSessionStart
+  | ActionDefault;

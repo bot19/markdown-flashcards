@@ -8,9 +8,26 @@ export const QuizStart = ({
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
-  // TODO: state update for start
-
-  return <div>start</div>;
+  return (
+    <div
+      style={{
+        border: "5px solid mediumaquamarine",
+        padding: "20px",
+        margin: "20px",
+      }}
+    >
+      <h1>Quiz start</h1>
+      <button
+        onClick={() =>
+          dispatch({
+            type: "UPDATE_QUIZ_SESSION_START",
+          })
+        }
+      >
+        start
+      </button>
+    </div>
+  );
 };
 
 /* <main>
