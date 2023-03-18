@@ -1,4 +1,9 @@
-import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
+import {
+  QuestionsArr,
+  QuestionsDataArr,
+  QuestionDataObject,
+  ReducerState,
+} from "./Types";
 import { APP_CONFIG } from "../config";
 import { initArrIfEmpty } from "../helpers";
 
@@ -51,12 +56,15 @@ export const updateQuizInit = (
     currentSession: {
       ...state.currentSession,
       // 3-2: init session Qs if need OR localStorage
-      sessionQuestions,
+      sessionQuestions: getSessionQsData(
+        sessionQuestions as QuestionsArr,
+        QuestionsDataArr
+      ),
       // 3-5
       // TODO: exception, could be on last Q & reload, this will be []
       questionsRemaining: initArrIfEmpty(
         state.currentSession.questionsRemaining,
-        sessionQuestions
+        sessionQuestions as QuestionsArr
       ),
     },
     currentAnswer: {
@@ -82,4 +90,24 @@ const updateQsRemaining = (
 
   // TODO: add new questions to existing qsRemaining arr
   return [...allQuestions];
+};
+
+/**
+ * 3-2: transform sessionQuestions from Q name strings to full data obj
+ * we need this for quiz session slides
+ */
+const getSessionQsData = (
+  sessionQuestions: QuestionsArr,
+  QuestionsDataArr: QuestionsDataArr
+) => {
+  return sessionQuestions.reduce((accumulator, currentValue) => {
+    // sessionQuestions is made from QuestionsDataArr ultimately, so will never be undefined
+    // using non-null asertion operator (!) so TS will shut up re possible "undefined"
+    const qData = QuestionsDataArr.find(
+      (qData) => qData.name === currentValue
+    )!;
+    accumulator.push(qData);
+
+    return accumulator;
+  }, [] as QuestionsDataArr);
 };

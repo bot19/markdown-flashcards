@@ -1,7 +1,12 @@
 import React from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
-import { useStaticQuery, graphql } from "gatsby";
 
+/**
+ *
+ *
+ * Gatsby: example of Queries in building-block components
+ * https://www.gatsbyjs.com/docs/tutorial/part-4/#queries-in-building-block-components
+ */
 export const QuizSession = ({
   state,
   dispatch,
@@ -9,24 +14,10 @@ export const QuizSession = ({
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
-  // TODO: add Q name as variable
-  const data = useStaticQuery(graphql`
-    query CurrentQuestion {
-      allFile(
-        filter: {
-          sourceInstanceName: { eq: "questions" }
-          name: { eq: "css-css" }
-        }
-      ) {
-        nodes {
-          name
-          id
-        }
-      }
-    }
-  `);
-
-  console.log("Q data", data);
+  const quizSessionNo = state.currentSession.number;
+  const slideQuestionData = state.currentSession.sessionQuestions.find(
+    (qData) => qData.name === state.currentAnswer.key
+  )!;
 
   // TODO: hook up button questions.
   return (
@@ -37,8 +28,8 @@ export const QuizSession = ({
         margin: "20px",
       }}
     >
-      <h1>{`Quiz session ${state.currentQuiz.number}`}</h1>
-      <h2>Q: {data?.allFile?.nodes?.[0].name}</h2>
+      <h1>{`Quiz session ${quizSessionNo}`}</h1>
+      <h2>Q: {slideQuestionData.name}</h2>
       <div>
         <button
           style={{

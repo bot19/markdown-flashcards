@@ -1,5 +1,6 @@
 export type QuestionsArr = string[];
-export type QuestionsDataArr = { name: string; id: string }[];
+export type QuestionDataObject = { name: string; id: string };
+export type QuestionsDataArr = QuestionDataObject[];
 
 export type ReducerState = {
   // section 1
@@ -46,7 +47,7 @@ export type ReducerState = {
     number: number; // 3-1
     // a-start init, 1st calc OR localStorage
     // a-end re-calc for next quiz session (new set of Qs)
-    sessionQuestions: QuestionsArr; // 3-2
+    sessionQuestions: QuestionsDataArr; // 3-2
     // a-start init, [] OR localStorage
     // update each quiz session & clicked on correct answer
     correctAnswers: QuestionsArr; // 3-3

@@ -24,11 +24,11 @@ export const updateQuizSessionStart = (state: ReducerState) => {
     currentAnswer: {
       ...state.currentAnswer,
       // 4-1: next Q is now current as we move forward in state
-      key: sessionQs[0],
+      key: sessionQs[0].name,
       // 4-2: prev page was quiz start, so null
       prevQuestionKey: null,
       // 4-3: next Q in session
-      nextQuestionKey: sessionQs[1],
+      nextQuestionKey: sessionQs[1].name,
     },
   };
 

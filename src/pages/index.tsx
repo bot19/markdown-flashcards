@@ -26,7 +26,9 @@ const QuizPage: React.FC<PageProps> = ({ data }) => {
 
 export default QuizPage;
 
-// TODO: copy-pasta from tutorial, but why gatsby does this vs useStaticQuery?
+// TODO: Type this at some point
+// Gatsby: Queries in page components
+// https://www.gatsbyjs.com/docs/tutorial/part-4/#queries-in-page-components-create-a-blog-page-with-a-list-of-post-filenames
 export const query = graphql`
   query AllQuestions {
     allFile(filter: { sourceInstanceName: { eq: "questions" } }) {
