@@ -1,5 +1,5 @@
 export type QuestionsArr = string[];
-export type QuestionDataObject = { name: string; id: string };
+export type QuestionDataObject = { key: string; id: string };
 export type QuestionsDataArr = QuestionDataObject[];
 
 export type ReducerState = {
@@ -8,7 +8,7 @@ export type ReducerState = {
     // a-start init, 1st = 0 OR localStorage
     // a-end update if quiz completed, +1
     timesQuizCompleted: number; // 1-1
-    // updated every init in case config changed
+    // a-start init, updated every init in case config changed
     questionsEachSession: number; // 1-2
     // update on status change, number = current session Q #
     quizStatus: "START" | "END" | number; // 1-3
@@ -58,16 +58,11 @@ export type ReducerState = {
     questionsRemaining: QuestionsArr; // 3-5
   };
   // section 4; usually updated on page/Q change
-  currentAnswer: {
+  currrentQuestion: {
     key: string | null; // 4-1
     prevQuestionKey: string | null; // 4-2
     nextQuestionKey: string | null; // 4-3
   };
-};
-
-type ActionDefault = {
-  type: string;
-  value: string;
 };
 
 type ActionUpdateQuizInit = {
@@ -79,7 +74,18 @@ type ActionUpdateQuizSessionStart = {
   type: "UPDATE_QUIZ_SESSION_START";
 };
 
+type ActionUpdateAnswerRight = {
+  type: "UPDATE_ANSWER_RIGHT";
+  value: string;
+};
+
+type ActionUpdateAnswerWrong = {
+  type: "UPDATE_ANSWER_WRONG";
+  value: string;
+};
+
 export type ReducerAction =
   | ActionUpdateQuizInit
   | ActionUpdateQuizSessionStart
-  | ActionDefault;
+  | ActionUpdateAnswerRight
+  | ActionUpdateAnswerWrong;

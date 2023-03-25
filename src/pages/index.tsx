@@ -33,7 +33,7 @@ export const query = graphql`
   query AllQuestions {
     allFile(filter: { sourceInstanceName: { eq: "questions" } }) {
       nodes {
-        name
+        key: name
         id
       }
       pageInfo {

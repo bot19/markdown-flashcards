@@ -10,5 +10,5 @@ export const QuizEnd = ({
 }) => {
   // TODO: state update for end
 
-  return <div>start</div>;
+  return <div>end</div>;
 };

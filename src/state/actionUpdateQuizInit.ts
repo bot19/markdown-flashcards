@@ -6,6 +6,7 @@ import {
 } from "./Types";
 import { APP_CONFIG } from "../config";
 import { initArrIfEmpty } from "../helpers";
+import { quizSessionsRemaining } from "../helpers";
 
 /**
  * update state on quiz load / init
@@ -18,7 +19,7 @@ export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: QuestionsDataArr
 ) => {
-  const allQuestions = QuestionsDataArr.map((q) => q.name);
+  const allQuestions = QuestionsDataArr.map((q) => q.key);
   const questionsRemaining = updateQsRemaining(
     allQuestions,
     state.currentQuiz.questionsRemaining
@@ -45,9 +46,7 @@ export const updateQuizInit = (
       // TODO: re-calc to ensure new Qs added
       questionsRemaining,
       // 2-6: update as questionsEachSession & allQuestions # can change
-      sessionsToCompleteQuiz: Math.ceil(
-        allQuestions.length / APP_CONFIG.questionsEachSession
-      ),
+      sessionsToCompleteQuiz: quizSessionsRemaining(questionsRemaining.length),
       // 2-7: update as questionsEachSession & questionsRemaining # can change
       sessionsRemaining: Math.ceil(
         questionsRemaining.length / APP_CONFIG.questionsEachSession
@@ -67,8 +66,8 @@ export const updateQuizInit = (
         sessionQuestions as QuestionsArr
       ),
     },
-    currentAnswer: {
-      ...state.currentAnswer,
+    currrentQuestion: {
+      ...state.currrentQuestion,
       // 4-3: 1st Q of current session
       nextQuestionKey: sessionQuestions[0],
     },
@@ -103,9 +102,7 @@ const getSessionQsData = (
   return sessionQuestions.reduce((accumulator, currentValue) => {
     // sessionQuestions is made from QuestionsDataArr ultimately, so will never be undefined
     // using non-null asertion operator (!) so TS will shut up re possible "undefined"
-    const qData = QuestionsDataArr.find(
-      (qData) => qData.name === currentValue
-    )!;
+    const qData = QuestionsDataArr.find((qData) => qData.key === currentValue)!;
     accumulator.push(qData);
 
     return accumulator;

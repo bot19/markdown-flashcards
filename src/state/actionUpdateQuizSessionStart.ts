@@ -1,5 +1,4 @@
-import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
-import { APP_CONFIG } from "../config";
+import { ReducerState } from "./Types";
 
 /**
  * update state on quiz session start
@@ -21,14 +20,13 @@ export const updateQuizSessionStart = (state: ReducerState) => {
     currentSession: {
       ...state.currentSession,
     },
-    currentAnswer: {
-      ...state.currentAnswer,
+    currrentQuestion: {
       // 4-1: next Q is now current as we move forward in state
-      key: sessionQs[0].name,
+      key: sessionQs[0].key,
       // 4-2: prev page was quiz start, so null
       prevQuestionKey: null,
       // 4-3: next Q in session
-      nextQuestionKey: sessionQs[1].name,
+      nextQuestionKey: sessionQs[1].key,
     },
   };
 

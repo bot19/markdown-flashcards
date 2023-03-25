@@ -31,7 +31,7 @@ export const QuizStart = ({
 };
 
 /* <main>
-      <h1>Software Engineering Flashcards</h1>
-      <p>Some description</p>
-      <Link to="/quiz">Start</Link>
-    </main> */
+  <h1>Software Engineering Flashcards</h1>
+  <p>Some description</p>
+  <Link to="/quiz">Start</Link>
+</main> */

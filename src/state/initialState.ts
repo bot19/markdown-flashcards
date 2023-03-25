@@ -23,7 +23,7 @@ export const initialState: ReducerState = {
     incorrectAnswers: [],
     questionsRemaining: [],
   },
-  currentAnswer: {
+  currrentQuestion: {
     key: null,
     prevQuestionKey: null,
     nextQuestionKey: null,

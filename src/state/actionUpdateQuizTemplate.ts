@@ -17,8 +17,8 @@ export const updateQuizStateTemplate = (state: ReducerState) => {
     currentSession: {
       ...state.currentSession,
     },
-    currentAnswer: {
-      ...state.currentAnswer,
+    currrentQuestion: {
+      ...state.currrentQuestion,
     },
   };
 
