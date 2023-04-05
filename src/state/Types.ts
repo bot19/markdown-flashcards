@@ -15,7 +15,7 @@ export type ReducerState = {
   };
   // section 2
   currentQuiz: {
-    // init = general.timesQuizCompleted + 1
+    // a-end, general.timesQuizCompleted + 1 if quiz completed
     number: number; // 2-1
     // init get; in case new questions
     allQuestions: QuestionsArr; // 2-2
@@ -50,6 +50,7 @@ export type ReducerState = {
     sessionQuestions: QuestionsDataArr; // 3-2
     // a-start init, [] OR localStorage
     // update each quiz session & clicked on correct answer
+    // a-start to reset to [], a-end to keep for stats
     correctAnswers: QuestionsArr; // 3-3
     // same as above for incorrect answers
     incorrectAnswers: QuestionsArr; // 3-4
@@ -84,8 +85,13 @@ type ActionUpdateAnswerWrong = {
   value: string;
 };
 
+type ActionUpdateQuizSessionEnd = {
+  type: "UPDATE_QUIZ_SESSION_END";
+};
+
 export type ReducerAction =
   | ActionUpdateQuizInit
   | ActionUpdateQuizSessionStart
   | ActionUpdateAnswerRight
-  | ActionUpdateAnswerWrong;
+  | ActionUpdateAnswerWrong
+  | ActionUpdateQuizSessionEnd;

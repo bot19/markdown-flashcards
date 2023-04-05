@@ -5,7 +5,7 @@ import { ReducerState } from "./Types";
  *
  * stepping into quiz session, Q # 1
  */
-export const updateQuizSessionStart = (state: ReducerState) => {
+export const updateQuizSessionStart = (state: ReducerState): ReducerState => {
   const sessionQs = state.currentSession.sessionQuestions;
 
   const newState = {

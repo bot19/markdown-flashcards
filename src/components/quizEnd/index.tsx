@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
 
 export const QuizEnd = ({
@@ -8,7 +8,34 @@ export const QuizEnd = ({
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
-  // TODO: state update for end
+  useEffect(() => {
+    console.log("effect fired");
+    dispatch({
+      type: "UPDATE_QUIZ_SESSION_END",
+    });
+  }, []);
 
-  return <div>end</div>;
+  return (
+    <div
+      style={{
+        border: "5px solid orchid",
+        padding: "20px",
+        margin: "20px",
+      }}
+    >
+      <h1>Quiz start</h1>
+
+      <div>Stats table (coming soon).</div>
+
+      <button
+        onClick={() =>
+          dispatch({
+            type: "UPDATE_QUIZ_SESSION_START",
+          })
+        }
+      >
+        Back to start
+      </button>
+    </div>
+  );
 };

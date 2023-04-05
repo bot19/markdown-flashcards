@@ -4,6 +4,7 @@ import { initialState } from "./initialState";
 
 const initialStateDefault = initialState;
 
+// TODO: fix TS errors
 export const useStateInit = (data) => {
   const isInit = useRef(true);
 

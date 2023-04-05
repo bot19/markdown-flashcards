@@ -1,4 +1,4 @@
-import { QuestionsArr, QuestionsDataArr } from "../state/Types";
+import { QuestionsArr, QuestionsDataArr } from "../Types";
 
 /**
  * basically to check if localStorage data is avail, YES use that, NO use init data

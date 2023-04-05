@@ -5,8 +5,8 @@ import {
   ReducerState,
 } from "./Types";
 import { APP_CONFIG } from "../config";
-import { initArrIfEmpty } from "../helpers";
-import { quizSessionsRemaining } from "../helpers";
+import { initArrIfEmpty } from "./helpers/initArrIfEmpty";
+import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
 
 /**
  * update state on quiz load / init
@@ -18,7 +18,7 @@ import { quizSessionsRemaining } from "../helpers";
 export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: QuestionsDataArr
-) => {
+): ReducerState => {
   const allQuestions = QuestionsDataArr.map((q) => q.key);
   const questionsRemaining = updateQsRemaining(
     allQuestions,

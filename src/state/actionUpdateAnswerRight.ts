@@ -1,20 +1,17 @@
 import { ReducerState } from "./Types";
-import { quizSessionsRemaining } from "../helpers";
+import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
+import { quizSessionStatus } from "./helpers/quizSessionStatus";
+import { getNextQsKey } from "./helpers/getNextQsKey";
 
 /**
  * update state on quiz session question correct
  *
  * could lead to another question or quiz session end
  */
-export const updateAnswerRight = (state: ReducerState, questionKey: string) => {
-  const sessionQs = state.currentSession.sessionQuestions;
-  // only accessible during quiz session, so quizStatus will be a number
-  // Number() to shut up TS
-  const newQuestionNumber = Number(state.general.quizStatus) + 1;
-  const quizStatus =
-    newQuestionNumber > state.general.questionsEachSession
-      ? "END"
-      : newQuestionNumber;
+export const updateAnswerRight = (
+  state: ReducerState,
+  questionKey: string
+): ReducerState => {
   const quizQsRemaining = [...state.currentQuiz.questionsRemaining].filter(
     (qKey) => qKey !== questionKey
   );
@@ -26,7 +23,7 @@ export const updateAnswerRight = (state: ReducerState, questionKey: string) => {
     general: {
       ...state.general,
       // 1-3: update on status change; next Q or end
-      quizStatus,
+      quizStatus: quizSessionStatus(state),
     },
     currentQuiz: {
       ...state.currentQuiz,
@@ -56,23 +53,4 @@ export const updateAnswerRight = (state: ReducerState, questionKey: string) => {
   };
 
   return newState;
-};
-
-/**
- * TODO: export this as helper
- * help get the next question's key & handle circumstances if no next question
- *
- * @param sessionQsRemaining question keys in an array
- * as you progress through the session quiz, this array shrinks by the 1 Q you progress
- * so the current Q is array index 0, and next always array index 1
- *
- * when you get to the last question, array.length is only 1
- * there isn't a next question, it will be the end view, so null is appropriate
- *
- * @returns string (Q key) or null
- */
-const getNextQsKey = (sessionQsRemaining: string[]) => {
-  if (sessionQsRemaining.length > 1) return sessionQsRemaining[1];
-
-  return null;
 };
