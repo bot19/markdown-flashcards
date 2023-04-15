@@ -4,9 +4,11 @@ import { ReducerAction, ReducerState } from "../../state/Types";
 export const QuizEnd = ({
   state,
   dispatch,
+  qsData,
 }: {
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
+  qsData: any; // TODO: fix
 }) => {
   useEffect(() => {
     console.log("effect fired");

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { graphql, Link } from "gatsby";
 import "../css/styles.scss";
@@ -9,6 +9,12 @@ import { QuizEnd } from "../components/quizEnd";
 
 const QuizPage: React.FC<PageProps> = ({ data }) => {
   const { state, dispatch } = useStateInit(data);
+  /**
+   * TODO: figure out if this is best way / how to persist Q .md data
+   * don't want to keep huge data in reducer state, as it keeps changing
+   * storing it separately for now
+   */
+  const [qsData, setQsData] = useState(data);
 
   console.log("questions data", data, state);
 
@@ -18,7 +24,7 @@ const QuizPage: React.FC<PageProps> = ({ data }) => {
 
   // flow: (3) finished quiz
   if (state.general.quizStatus === "END")
-    return <QuizEnd {...{ state, dispatch }} />;
+    return <QuizEnd {...{ state, dispatch, qsData }} />;
 
   // flow: (2) quiz session
   return <QuizSession {...{ state, dispatch }} />;

@@ -26,7 +26,7 @@ export const updateQuizInit = (
   );
   const sessionQuestions = initArrIfEmpty(
     state.currentSession.sessionQuestions,
-    [...allQuestions].splice(0, APP_CONFIG.questionsEachSession)
+    [...questionsRemaining].splice(0, APP_CONFIG.questionsEachSession)
   );
 
   const newState = {

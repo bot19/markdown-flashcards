@@ -56,6 +56,7 @@ export type ReducerState = {
     incorrectAnswers: QuestionsArr; // 3-4
     // a-start init, 1st = sessionQuestions OR localStorage
     // update each quiz session & clicked on answer > recalc
+    // a-end re-calc for next quiz session (new set of Qs)
     questionsRemaining: QuestionsArr; // 3-5
   };
   // section 4; usually updated on page/Q change
