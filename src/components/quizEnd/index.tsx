@@ -4,11 +4,9 @@ import { ReducerAction, ReducerState } from "../../state/Types";
 export const QuizEnd = ({
   state,
   dispatch,
-  qsData,
 }: {
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
-  qsData: any; // TODO: fix
 }) => {
   useEffect(() => {
     console.log("effect fired");
@@ -25,7 +23,7 @@ export const QuizEnd = ({
         margin: "20px",
       }}
     >
-      <h1>Quiz start</h1>
+      <h1>Quiz end</h1>
 
       <div>Stats table (coming soon).</div>
 

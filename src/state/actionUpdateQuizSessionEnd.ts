@@ -1,5 +1,7 @@
 import { ReducerState } from "./Types";
 import { APP_CONFIG } from "../config";
+import { getLocalStorage } from "../helpers";
+import { KEYS_LOCAL_STORAGE } from "../constants";
 
 /**
  * update state on quiz session end
@@ -12,6 +14,17 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
   const nextSessionQsSource = isQuizDone
     ? state.currentQuiz.allQuestions
     : state.currentQuiz.questionsRemaining;
+  const questionsRemaining = [...nextSessionQsSource].splice(
+    0,
+    APP_CONFIG.questionsEachSession
+  );
+  // get all Qs data to get next sessionQuestions (3-2)
+  const allQsData = getLocalStorage(KEYS_LOCAL_STORAGE.allQsData);
+  const sessionQuestions = allQsData
+    ? questionsRemaining.map((question) =>
+        allQsData.find((qData) => question === qData.key)
+      )
+    : state.currentSession.sessionQuestions;
 
   const newState = {
     general: {
@@ -33,13 +46,9 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
       // 3-1: session just completed, +1
       number: state.currentSession.number + 1,
       // 3-2: a-end re-calc for next quiz session (new set of Qs)
-      // TODO: need questions .md gql data somehow to re-populate this from 3-5
-      sessionQuestions: state.currentSession.sessionQuestions,
+      sessionQuestions,
       // 3-5: a-end re-calc for next quiz session (new set of Qs)
-      questionsRemaining: [...nextSessionQsSource].splice(
-        0,
-        APP_CONFIG.questionsEachSession
-      ),
+      questionsRemaining,
     },
     currrentQuestion: {
       // 4-1: next Q is now current as we move forward in state
@@ -51,5 +60,6 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
     },
   };
 
+  // FIXME: TS
   return newState;
 };

@@ -1,2 +1,2 @@
-// export { initArrIfEmpty } from "./initArrIfEmpty";
-// export { quizSessionsRemaining } from "./quizSessionsRemaining";
+export { setLocalStorage } from "./setLocalStorage";
+export { getLocalStorage } from "./getLocalStorage";

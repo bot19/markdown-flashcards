@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { graphql, Link } from "gatsby";
 import "../css/styles.scss";
@@ -6,15 +6,14 @@ import { useStateInit } from "../state/useStateInit";
 import { QuizStart } from "../components/quizStart";
 import { QuizSession } from "../components/quizSession";
 import { QuizEnd } from "../components/quizEnd";
+import { setLocalStorage } from "../helpers";
+import { AllQuestions } from "../Types";
+import { KEYS_LOCAL_STORAGE } from "../constants";
 
-const QuizPage: React.FC<PageProps> = ({ data }) => {
+const QuizPage = ({ data }: { data: AllQuestions }) => {
   const { state, dispatch } = useStateInit(data);
-  /**
-   * TODO: figure out if this is best way / how to persist Q .md data
-   * don't want to keep huge data in reducer state, as it keeps changing
-   * storing it separately for now
-   */
-  const [qsData, setQsData] = useState(data);
+  // persist Q .md data for access at diff app stages
+  setLocalStorage(KEYS_LOCAL_STORAGE.allQsData, data?.allFile?.nodes || []);
 
   console.log("questions data", data, state);
 
@@ -24,7 +23,7 @@ const QuizPage: React.FC<PageProps> = ({ data }) => {
 
   // flow: (3) finished quiz
   if (state.general.quizStatus === "END")
-    return <QuizEnd {...{ state, dispatch, qsData }} />;
+    return <QuizEnd {...{ state, dispatch }} />;
 
   // flow: (2) quiz session
   return <QuizSession {...{ state, dispatch }} />;
