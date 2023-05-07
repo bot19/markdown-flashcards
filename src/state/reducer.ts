@@ -4,6 +4,7 @@ import { updateQuizSessionStart } from "./actionUpdateQuizSessionStart";
 import { updateAnswerRight } from "./actionUpdateAnswerRight";
 import { updateAnswerWrong } from "./actionUpdateAnswerWrong";
 import { updateQuizSessionEnd } from "./actionUpdateQuizSessionEnd";
+import { updateQuizSessionRestart } from "./actionUpdateQuizSessionRestart";
 
 export const reducer = (
   state: ReducerState,
@@ -24,6 +25,9 @@ export const reducer = (
 
     case "UPDATE_QUIZ_SESSION_END":
       return { ...updateQuizSessionEnd(state) };
+
+    case "UPDATE_QUIZ_SESSION_RESTART":
+      return { ...updateQuizSessionRestart(state) };
 
     default:
       return { ...state };

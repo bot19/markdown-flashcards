@@ -8,7 +8,7 @@ import { ReducerState } from "./Types";
 export const updateQuizSessionStart = (state: ReducerState): ReducerState => {
   const sessionQs = state.currentSession.sessionQuestions;
 
-  const newState = {
+  const newState: ReducerState = {
     general: {
       ...state.general,
       // 1-3: update on status change, up to session Q # 1

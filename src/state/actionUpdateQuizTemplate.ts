@@ -7,7 +7,7 @@ import { APP_CONFIG } from "../config";
  * ...
  */
 export const updateQuizStateTemplate = (state: ReducerState) => {
-  const newState = {
+  const newState: ReducerState = {
     general: {
       ...state.general,
     },

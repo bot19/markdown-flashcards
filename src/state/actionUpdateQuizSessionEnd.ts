@@ -7,6 +7,7 @@ import { KEYS_LOCAL_STORAGE } from "../constants";
  * update state on quiz session end
  *
  * stepping out of quiz session
+ * this state is partially set already before this going from last Q to here
  */
 export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
   const isQuizDone = state.currentQuiz.questionsRemaining.length === 0;
@@ -26,7 +27,7 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
       )
     : state.currentSession.sessionQuestions;
 
-  const newState = {
+  const newState: ReducerState = {
     general: {
       ...state.general,
       // 1-1: is quiz completed? +1 this number (not quiz session)
@@ -51,15 +52,10 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
       questionsRemaining,
     },
     currrentQuestion: {
-      // 4-1: next Q is now current as we move forward in state
-      key: null,
-      // 4-2: prev page was quiz start, so null
-      prevQuestionKey: state.currrentQuestion.key,
-      // 4-3: next Q in session
-      nextQuestionKey: null,
+      // already set going from last Q to END (quiz)
+      ...state.currrentQuestion,
     },
   };
 
-  // FIXME: TS
   return newState;
 };

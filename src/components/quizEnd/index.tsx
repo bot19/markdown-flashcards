@@ -9,7 +9,6 @@ export const QuizEnd = ({
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
   useEffect(() => {
-    console.log("effect fired");
     dispatch({
       type: "UPDATE_QUIZ_SESSION_END",
     });
@@ -30,7 +29,7 @@ export const QuizEnd = ({
       <button
         onClick={() =>
           dispatch({
-            type: "UPDATE_QUIZ_SESSION_START",
+            type: "UPDATE_QUIZ_SESSION_RESTART",
           })
         }
       >

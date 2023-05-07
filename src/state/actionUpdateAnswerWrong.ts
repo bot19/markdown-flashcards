@@ -18,7 +18,7 @@ export const updateAnswerWrong = (
     ...state.currentSession.questionsRemaining,
   ].filter((qKey) => qKey !== questionKey);
 
-  const newState = {
+  const newState: ReducerState = {
     general: {
       ...state.general,
       // 1-3: update on status change; next Q or end

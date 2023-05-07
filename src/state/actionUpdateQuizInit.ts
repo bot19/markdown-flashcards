@@ -1,9 +1,4 @@
-import {
-  QuestionsArr,
-  QuestionsDataArr,
-  QuestionDataObject,
-  ReducerState,
-} from "./Types";
+import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
 import { APP_CONFIG } from "../config";
 import { initArrIfEmpty } from "./helpers/initArrIfEmpty";
 import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
@@ -29,7 +24,7 @@ export const updateQuizInit = (
     [...questionsRemaining].splice(0, APP_CONFIG.questionsEachSession)
   );
 
-  const newState = {
+  const newState: ReducerState = {
     general: {
       ...state.general,
       // 1-2: updated every init in case config changed
