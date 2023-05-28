@@ -20,7 +20,8 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
     APP_CONFIG.questionsEachSession
   );
   // get all Qs data to get next sessionQuestions (3-2)
-  const allQsData = getLocalStorage(KEYS_LOCAL_STORAGE.allQsData);
+  // FIXME: TS
+  const allQsData = getLocalStorage(KEYS_LOCAL_STORAGE.ALL_QS_DATA);
   const sessionQuestions = allQsData
     ? questionsRemaining.map((question) =>
         allQsData.find((qData) => question === qData.key)

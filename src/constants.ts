@@ -1,3 +1,4 @@
 export const KEYS_LOCAL_STORAGE = {
-  allQsData: "allQsData",
+  ALL_QS_DATA: "FC_ALL_QS_DATA",
+  APP_STATE: "FC_APP_STATE",
 };

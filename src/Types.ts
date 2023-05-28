@@ -1,4 +1,4 @@
-import { QuestionsDataArr } from "./state/Types";
+import { QuestionsDataArr, ReducerState } from "./state/Types";
 
 export type AllQuestions = {
   allFile: {
@@ -7,4 +7,4 @@ export type AllQuestions = {
   };
 };
 
-export type LocalStorageData = QuestionsDataArr;
+export type LocalStorageData = QuestionsDataArr | ReducerState;

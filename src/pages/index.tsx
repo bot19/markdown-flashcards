@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { graphql, Link } from "gatsby";
 import "../css/styles.scss";
@@ -12,10 +12,15 @@ import { KEYS_LOCAL_STORAGE } from "../constants";
 
 const QuizPage = ({ data }: { data: AllQuestions }) => {
   const { state, dispatch } = useStateInit(data);
-  // persist Q .md data for access at diff app stages
-  setLocalStorage(KEYS_LOCAL_STORAGE.allQsData, data?.allFile?.nodes || []);
 
-  console.log("questions data", data, state);
+  // persist Q .md data for access at diff app stages
+  setLocalStorage(KEYS_LOCAL_STORAGE.ALL_QS_DATA, data?.allFile?.nodes || []);
+
+  // update localStorage on state change
+  useEffect(() => {
+    console.log("effect: state", state);
+    setLocalStorage(KEYS_LOCAL_STORAGE.APP_STATE, state || {});
+  }, [state]);
 
   // flow: (1) start quiz
   if (state.general.quizStatus === "START")
