@@ -35,6 +35,8 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
       timesQuizCompleted: isQuizDone
         ? state.general.timesQuizCompleted + 1
         : state.general.timesQuizCompleted,
+      // 1-4: reset quiz if current quiz done
+      restartCmd: isQuizDone ? "RESET QUIZ" : null,
     },
     currentQuiz: {
       ...state.currentQuiz,

@@ -19,6 +19,14 @@ export const updateAnswerRight = (
     ...state.currentSession.questionsRemaining,
   ].filter((qKey) => qKey !== questionKey);
 
+  const correctAnswersOnly = [...state.currentQuiz.incorrectAnswers].reduce(
+    (correctAnswersArr, incorrectAnswer) =>
+      correctAnswersArr.filter(
+        (correctAnswer) => correctAnswer !== incorrectAnswer
+      ),
+    [...state.currentQuiz.correctAnswers, questionKey]
+  );
+
   const newState: ReducerState = {
     general: {
       ...state.general,
@@ -28,7 +36,8 @@ export const updateAnswerRight = (
     currentQuiz: {
       ...state.currentQuiz,
       // 2-3: once correct, wont encounter Q again until next quiz
-      correctAnswers: [...state.currentQuiz.correctAnswers, questionKey],
+      // incorrect Qs need to redo until correct, but can't be considered so
+      correctAnswers: correctAnswersOnly,
       // 2-5: allQuestions less correctAnswers
       questionsRemaining: quizQsRemaining,
       // 2-7: update as questionsEachSession & questionsRemaining # can change

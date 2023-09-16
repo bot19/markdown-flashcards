@@ -12,6 +12,10 @@ export type ReducerState = {
     questionsEachSession: number; // 1-2
     // update on status change, number = current session Q #
     quizStatus: "START" | "END" | number; // 1-3
+    // reset on restart, as there is END and START state
+    // however, can't reset on END as we want to preserve stats for display
+    // this state tells START to perform special commands
+    restartCmd: "RESET QUIZ" | null; // 1-4
   };
   // section 2
   currentQuiz: {

@@ -23,6 +23,9 @@ export const updateQuizInit = (
     state.currentSession.sessionQuestions,
     [...questionsRemaining].splice(0, APP_CONFIG.questionsEachSession)
   );
+  const sessionsToCompleteQuiz = quizSessionsRemaining(
+    questionsRemaining.length
+  );
 
   const newState: ReducerState = {
     general: {
@@ -41,11 +44,9 @@ export const updateQuizInit = (
       // TODO: re-calc to ensure new Qs added
       questionsRemaining,
       // 2-6: update as questionsEachSession & allQuestions # can change
-      sessionsToCompleteQuiz: quizSessionsRemaining(questionsRemaining.length),
+      sessionsToCompleteQuiz,
       // 2-7: update as questionsEachSession & questionsRemaining # can change
-      sessionsRemaining: Math.ceil(
-        questionsRemaining.length / APP_CONFIG.questionsEachSession
-      ),
+      sessionsRemaining: sessionsToCompleteQuiz,
     },
     currentSession: {
       ...state.currentSession,

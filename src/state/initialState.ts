@@ -6,6 +6,7 @@ export const initialState: ReducerState = {
     timesQuizCompleted: 0,
     questionsEachSession: APP_CONFIG.questionsEachSession,
     quizStatus: "START",
+    restartCmd: null,
   },
   currentQuiz: {
     number: 1,
