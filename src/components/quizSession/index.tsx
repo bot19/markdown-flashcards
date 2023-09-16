@@ -27,7 +27,9 @@ export const QuizSession = ({
       }}
     >
       <h1>{`Quiz session ${quizSessionNo}`}</h1>
+
       <h2>Q: {slideQuestionData.key}</h2>
+
       <div>
         <button
           style={{
@@ -42,6 +44,7 @@ export const QuizSession = ({
         >
           Incorrect
         </button>
+
         <button
           onClick={() =>
             dispatch({

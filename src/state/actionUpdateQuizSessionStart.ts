@@ -26,7 +26,7 @@ export const updateQuizSessionStart = (state: ReducerState): ReducerState => {
       // 4-2: prev page was quiz start, so null
       prevQuestionKey: null,
       // 4-3: next Q in session
-      nextQuestionKey: sessionQs[1].key,
+      nextQuestionKey: sessionQs[1] ? sessionQs[1].key : null,
     },
   };
 

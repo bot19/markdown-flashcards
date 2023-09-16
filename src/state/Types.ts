@@ -32,7 +32,7 @@ export type ReducerState = {
     // update each quiz session & clicked on correct answer
     // allQuestions less correctAnswers
     questionsRemaining: QuestionsArr; // 2-5
-    // number of sessions to cover all questions (static)
+    // number of sessions to cover all questions (static), if Q correct
     // a-start init: update as questionsEachSession & allQuestions # can change
     sessionsToCompleteQuiz: number; // 2-6
     // uses questionsRemaining as basis for calc
