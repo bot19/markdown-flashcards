@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Link } from "gatsby";
-import "../css/styles.scss";
+// import "../css/styles.scss";
 
 /**
  *

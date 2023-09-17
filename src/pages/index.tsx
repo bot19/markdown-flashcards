@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import type { HeadFC, PageProps } from "gatsby";
-import { graphql, Link } from "gatsby";
-import "../css/styles.scss";
+import type { HeadFC } from "gatsby";
+import { graphql } from "gatsby";
 import { useStateInit } from "../state/useStateInit";
 import { QuizStart } from "../components/quizStart";
 import { QuizSession } from "../components/quizSession";
@@ -9,6 +8,7 @@ import { QuizEnd } from "../components/quizEnd";
 import { setLocalStorage } from "../helpers";
 import { AllQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
+// import "../css/styles.css";
 
 const QuizPage = ({ data }: { data: AllQuestions }) => {
   const { state, dispatch } = useStateInit(data);
