@@ -8,7 +8,7 @@ import { QuizEnd } from "../components/quizEnd";
 import { setLocalStorage } from "../helpers";
 import { AllQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
-// import "../css/styles.css";
+import { APP_CONFIG } from "../config";
 
 const QuizPage = ({ data }: { data: AllQuestions }) => {
   const { state, dispatch } = useStateInit(data);
@@ -22,16 +22,19 @@ const QuizPage = ({ data }: { data: AllQuestions }) => {
     setLocalStorage(KEYS_LOCAL_STORAGE.APP_STATE, state || {});
   }, [state]);
 
+  // flow: (2) quiz session
+  let content = <QuizSession {...{ state, dispatch }} />;
+
   // flow: (1) start quiz
   if (state.general.quizStatus === "START")
-    return <QuizStart {...{ state, dispatch }} />;
+    content = <QuizStart {...{ state, dispatch }} />;
 
   // flow: (3) finished quiz
   if (state.general.quizStatus === "END")
-    return <QuizEnd {...{ state, dispatch }} />;
+    content = <QuizEnd {...{ state, dispatch }} />;
 
-  // flow: (2) quiz session
-  return <QuizSession {...{ state, dispatch }} />;
+  // TODO: next - setup wrapper compontent, 2 col config,
+  return <section>{content}</section>;
 };
 
 export default QuizPage;
@@ -53,9 +56,15 @@ export const query = graphql`
   }
 `;
 
-export const Head: HeadFC = () => (
-  <>
-    <title>Quiz Start</title>
-    <meta name="description" content="Your description" />
-  </>
-);
+export const Head: HeadFC = () => {
+  // console.log("head", props);
+
+  return (
+    <>
+      <title>
+        {APP_CONFIG.quizInfo.name} by {APP_CONFIG.quizInfo.author}
+      </title>
+      <meta name="description" content={APP_CONFIG.quizInfo.description} />
+    </>
+  );
+};
