@@ -1,6 +1,7 @@
 import React from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
 
+// colour: mediumaquamarine
 export const QuizStart = ({
   state,
   dispatch,
@@ -8,16 +9,11 @@ export const QuizStart = ({
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
-  return (
-    <div
-      style={{
-        border: "5px solid mediumaquamarine",
-        padding: "20px",
-        margin: "20px",
-      }}
-    >
-      <h1>Quiz start</h1>
-      <button
+  return <div>quiz start</div>;
+};
+
+{
+  /* <button
         onClick={() =>
           dispatch({
             type: "UPDATE_QUIZ_SESSION_START",
@@ -25,13 +21,5 @@ export const QuizStart = ({
         }
       >
         start
-      </button>
-    </div>
-  );
-};
-
-/* <main>
-  <h1>Software Engineering Flashcards</h1>
-  <p>Some description</p>
-  <Link to="/quiz">Start</Link>
-</main> */
+      </button> */
+}

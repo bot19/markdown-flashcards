@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import type { HeadFC } from "gatsby";
 import { graphql } from "gatsby";
 import { useStateInit } from "../state/useStateInit";
-import { QuizStart } from "../components/quizStart";
-import { QuizSession } from "../components/quizSession";
-import { QuizEnd } from "../components/quizEnd";
+import { Layout, QuizEnd, QuizSession, QuizStart } from "../components";
 import { setLocalStorage } from "../helpers";
 import { AllQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
@@ -33,8 +31,7 @@ const QuizPage = ({ data }: { data: AllQuestions }) => {
   if (state.general.quizStatus === "END")
     content = <QuizEnd {...{ state, dispatch }} />;
 
-  // TODO: next - setup wrapper compontent, 2 col config,
-  return <section>{content}</section>;
+  return <Layout state={state}>{content}</Layout>;
 };
 
 export default QuizPage;
