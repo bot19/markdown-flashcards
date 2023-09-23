@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* :root {} */
+
+body {
+  @apply bg-white;
+}
+
+/*
+diff text levels
+
+normal with emphasis: 
+font-medium text-gray-900
+
+small emphasis:
+font-medium text-gray-700 uppercase
+
+normal text: 18px 
+text-lg text-gray-500
+
+description text: 24px
+text-2xl text-gray-70
+
+h1: 60px
+text-5xl font-bold text-gray-900 xl:text-6xl
+
+h3: 30px 
+text-3xl font-bold
+
+*/
