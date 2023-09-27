@@ -2,15 +2,14 @@ import React from "react";
 import classNames from "classnames";
 
 const SIZE = Object.freeze({
-  md: "px-[clamp(0.75rem,0.3333rem+1.8519vw,2rem)] pt-2 pb-1 sm:pt-3 sm:pb-2 text-2xl-dynamic",
-  lg: "px-[clamp(1rem,0.3333rem+2.9630vw,3rem)] pt-4 pb-2 sm:pt-6 sm:pb-4 text-xl-dynamic font-aesop uppercase",
+  md: "px-5 py-4 text-lg rounded-lg",
+  lg: "",
 });
 
 const THEME = Object.freeze({
-  blue: "bg-cc-blue-700 text-white",
-  purple: "bg-cc-purple-400 text-white",
-  red: "bg-cc-pink-800 text-cc-yellow-400",
-  white: "bg-cc-pink-200 text-cc-purple-400",
+  primary: "bg-blue-600 hover:bg-blue-700 text-white",
+  success: "bg-green-600 hover:bg-green-700 text-white",
+  clear: "",
 });
 
 interface IButton {
@@ -26,13 +25,13 @@ export interface IButtonComponent extends IButton {
   className?: string;
   callback?: () => void | undefined; // TODO: later
   size?: "md" | "lg";
-  theme?: "blue" | "purple" | "red" | "white";
+  theme?: "primary" | "success" | "clear";
   url?: string;
 }
 
 const BUTTON_DEFAULT_PROPS = Object.freeze({
   size: "md",
-  theme: "blue",
+  theme: "primary",
 });
 
 /**
@@ -47,7 +46,10 @@ export const Button = (props: IButtonComponent) => {
   return (
     <button
       className={classNames(
-        "rounded-full focus:outline-none hover:animate-bounce-sm",
+        "inline-block min-w-[10rem]",
+        "font-medium text-center",
+        "transition duration-200 ease",
+        "focus:outline-none",
         SIZE[props.size],
         THEME[props.theme],
         props.className
@@ -66,23 +68,13 @@ Button.defaultProps = { ...BUTTON_DEFAULT_PROPS };
 
 /*
   
-  <div className="relative">
-  <a
-    href="#_"
-    className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
-    data-primary="blue-600"
-    data-rounded="rounded-lg"
-  >
-    Create Account
-  </a>
-  <a
+ <a
     href="#_"
     className="inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
     data-rounded="rounded-lg"
   >
     Sign up with Google
   </a>
-</div>
 
 <a
   href="#_"
