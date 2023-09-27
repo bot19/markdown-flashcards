@@ -29,28 +29,12 @@ export const Layout = (props: ILayout) => {
             "bg-white drop-shadow-2xl"
           )}
         >
-          <div className="flex flex-col h-full p-16">
-            <div
-              className={classNames("pb-8 mb-8", "border-b border-b-gray-200")}
-            >
-              <div className="tracking-tight mb-8">
-                <p className="mb-2 font-medium text-gray-400">
-                  <span className="uppercase">
-                    {APP_CONFIG.quizInfo.author}
-                  </span>{" "}
-                  presents
-                </p>
-                <h2 className="text-5xl font-bold text-gray-900 xl:text-6xl">
-                  {APP_CONFIG.quizInfo.name}
-                </h2>
-              </div>
+          <div className={classNames("flex flex-col h-full", "p-16 pb-0")}>
+            <Header />
 
-              <p className="text-2xl text-gray-700">
-                {APP_CONFIG.quizInfo.description}
-              </p>
-            </div>
+            <div className="grow">{props.children}</div>
 
-            <div className="">{props.children}</div>
+            <Footer />
           </div>
         </div>
 
@@ -69,3 +53,34 @@ export const Layout = (props: ILayout) => {
     </section>
   );
 };
+
+const Header = () => (
+  <div className={classNames("pb-8 mb-8", "border-b border-b-gray-200")}>
+    <div className="tracking-tight mb-8">
+      <p className="mb-2 font-medium text-gray-400">
+        <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents
+      </p>
+      <h2 className="text-5xl font-bold text-gray-900 xl:text-6xl">
+        {APP_CONFIG.quizInfo.name}
+      </h2>
+    </div>
+
+    <p className="text-2xl text-gray-700">{APP_CONFIG.quizInfo.description}</p>
+  </div>
+);
+
+const Footer = () => (
+  <footer className={classNames("flex items-center", "h-16")}>
+    <p className="text-gray-400">
+      Made in 2023 with ♥ / Checkout on{" "}
+      <a
+        href="https://github.com/bot19/software-eng-flashcards"
+        target="_blank"
+        className={classNames("text-black underline", "hover:no-underline")}
+      >
+        Github
+      </a>
+      .
+    </p>
+  </footer>
+);
