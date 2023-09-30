@@ -37,7 +37,7 @@ export const Stats = (props: IStats) => {
         <div className="text-black">Quiz</div>
 
         {quizStats.map((row) => (
-          <StatRow label={row[0]} value={row[1]} />
+          <StatRow key={`quizStats_${row[0]}`} label={row[0]} value={row[1]} />
         ))}
       </div>
 
@@ -45,7 +45,11 @@ export const Stats = (props: IStats) => {
         <div className="text-black">Session</div>
 
         {sessionStats.map((row) => (
-          <StatRow label={row[0]} value={row[1]} />
+          <StatRow
+            key={`sessionStats_${row[0]}`}
+            label={row[0]}
+            value={row[1]}
+          />
         ))}
       </div>
     </div>
