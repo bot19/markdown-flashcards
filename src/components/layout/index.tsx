@@ -9,48 +9,110 @@ interface ILayout {
 }
 
 export const Layout = (props: ILayout) => {
+  const isInQuiz = typeof props.state.general.quizStatus === "number";
+  const sessionProgress = isInQuiz
+    ? Math.ceil(
+        ((props.state.general.quizStatus as number) /
+          props.state.currentSession.sessionQuestions.length) *
+          100
+      )
+    : 0;
+
   return (
-    <section
+    <div
       className={classNames(
-        "max-w-[1280px] h-screen",
-        "flex flex-col",
-        "mx-auto",
-        "drop-shadow-xl",
+        "h-screen",
         "relative",
-        "after:absolute after:inset-y-0 after:-left-[50vw] after:w-[50vw] after:bg-white after:z-10"
+        "before:absolute before:inset-x-0 before:top-0 before:w-full before:h-4 before:bg-gray-200"
       )}
     >
-      <div className={classNames("flex flex-row flex-1", "relative")}>
-        <div
-          className={classNames(
-            "absolute inset-y-0 left-0 z-10",
-            "w-10/12",
-            "rounded-r-3xl",
-            "bg-white drop-shadow-2xl"
-          )}
-        >
-          <div className={classNames("flex flex-col h-full", "p-16 pb-0")}>
-            <Header />
-
-            <div className="grow">{props.children}</div>
-
-            <Footer />
-          </div>
-        </div>
-
-        <div className={classNames("w-full")}>
+      <section
+        className={classNames(
+          "max-w-[1280px] h-full",
+          "flex flex-col",
+          "mx-auto",
+          "drop-shadow-xl",
+          "relative",
+          "after:absolute after:inset-y-0 after:-left-[50vw] after:w-[50vw] after:bg-white after:z-10"
+        )}
+      >
+        <div className={classNames("flex flex-row flex-1", "relative")}>
           <div
             className={classNames(
-              "flex flex-col h-full",
-              "p-16",
-              "transition-opacity duration-1000 opacity-0"
+              "absolute inset-y-0 z-10",
+              "bg-white drop-shadow-2xl",
+              "rounded-r-3xl",
+              "w-10/12",
+              "transition-all duration-500",
+              { "left-0": !isInQuiz },
+              {
+                "-left-[75%]": isInQuiz,
+              }
             )}
           >
-            content...
+            <div
+              className={classNames(
+                "flex flex-col h-full",
+                "p-16 pb-0",
+                "transition-all duration-500",
+                { "opacity-100": !isInQuiz },
+                {
+                  "opacity-0": isInQuiz,
+                }
+              )}
+            >
+              <Header />
+              <div
+                className={classNames("grow", {
+                  hidden: isInQuiz,
+                })}
+              >
+                {props.children}
+              </div>
+              <Footer />
+            </div>
+          </div>
+
+          <div className={classNames("w-full")}>
+            <div
+              className={classNames(
+                "flex flex-col h-full",
+                "max-w-[1024px] mx-auto",
+                "p-16",
+                "relative",
+                "transition-opacity duration-500",
+                { "opacity-100": isInQuiz },
+                {
+                  "opacity-0": !isInQuiz,
+                }
+              )}
+            >
+              <div
+                className={classNames(
+                  "absolute left-16 top-0",
+                  "w-[calc(100%-8rem)] h-4",
+                  "bg-blue-300",
+                  "transition-opacity duration-500",
+                  { "opacity-100": isInQuiz },
+                  {
+                    "opacity-0": !isInQuiz,
+                  }
+                )}
+              >
+                <div
+                  className={classNames("bg-blue-500 h-full")}
+                  style={{
+                    width: `${sessionProgress > 100 ? 100 : sessionProgress}%`,
+                  }}
+                />
+              </div>
+
+              {props.children}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

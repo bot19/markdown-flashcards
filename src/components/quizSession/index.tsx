@@ -19,13 +19,7 @@ export const QuizSession = ({
 
   // TODO: hook up button questions.
   return (
-    <div
-      style={{
-        border: "5px solid dodgerblue",
-        padding: "20px",
-        margin: "20px",
-      }}
-    >
+    <div>
       <h1>{`Quiz session ${quizSessionNo}`}</h1>
 
       <h2>Q: {slideQuestionData.key}</h2>
