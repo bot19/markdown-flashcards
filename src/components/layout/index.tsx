@@ -15,22 +15,22 @@ export const Layout = (props: ILayout) => {
   return (
     <div
       className={classNames(
-        "h-screen",
+        "flex h-screen",
         "relative",
         "before:absolute before:inset-x-0 before:top-0 before:w-full before:h-4 before:bg-gray-200"
       )}
     >
       <section
         className={classNames(
-          "max-w-[1280px] h-full",
-          "flex flex-col",
+          "max-w-[1280px]",
+          "flex flex-col grow",
           "mx-auto",
           "drop-shadow-xl",
           "relative",
           "after:absolute after:inset-y-0 after:-left-[50vw] after:w-[50vw] after:bg-white after:z-10"
         )}
       >
-        <div className={classNames("flex flex-row flex-1", "relative")}>
+        <div className={classNames("flex flex-col grow", "relative")}>
           <div
             className={classNames(
               "absolute inset-y-0 z-10",
@@ -67,10 +67,10 @@ export const Layout = (props: ILayout) => {
             </div>
           </div>
 
-          <div className={classNames("w-full")}>
+          <div className={classNames("w-full", "flex flex-col grow")}>
             <div
               className={classNames(
-                "flex flex-col h-full",
+                "flex flex-col grow",
                 "max-w-[1024px] mx-auto",
                 "p-16 pb-0",
                 "relative",

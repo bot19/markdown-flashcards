@@ -1,0 +1,7 @@
+.answer p {
+  @apply mb-8;
+}
+
+.answer p:last-child {
+  @apply mb-0;
+}
