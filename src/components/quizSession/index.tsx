@@ -67,9 +67,9 @@ const Answer = () => {
     <div
       className={classNames(
         "grow",
-        "flex flex-col justify-center",
-        { "items-center": !showAnswer },
-        { "items-start": showAnswer },
+        "flex flex-col",
+        { "items-center justify-center": !showAnswer },
+        { "items-start justify-start": showAnswer },
         "border-2 border-dashed border-gray-400 rounded-xl",
         "bg-gray-200",
         "h-0 overflow-y-scroll"
