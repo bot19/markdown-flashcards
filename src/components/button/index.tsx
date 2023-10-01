@@ -9,8 +9,12 @@ const SIZE = Object.freeze({
 const THEME = Object.freeze({
   primary: "bg-blue-600 hover:bg-blue-700 text-white",
   success: "bg-green-600 hover:bg-green-700 text-white",
-  clear: "",
+  clear: "bg-white hover:bg-gray-100 text-gray-900 border border-gray-300",
 });
+
+// font-bold
+
+// inline-block px-8 py-5 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease
 
 interface IButton {
   target?: "_blank" | "_self";
@@ -50,8 +54,9 @@ export const Button = (props: IButtonComponent) => {
         "font-medium text-center",
         "transition duration-200 ease",
         "focus:outline-none",
-        SIZE[props.size],
-        THEME[props.theme],
+        // use non-null assertion operator to shut TS up, despite defaultProps...
+        SIZE[props.size!],
+        THEME[props.theme!],
         props.className
       )}
       onClick={() => {
@@ -65,24 +70,3 @@ export const Button = (props: IButtonComponent) => {
 };
 
 Button.defaultProps = { ...BUTTON_DEFAULT_PROPS };
-
-/*
-  
- <a
-    href="#_"
-    className="inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
-    data-rounded="rounded-lg"
-  >
-    Sign up with Google
-  </a>
-
-<a
-  href="#_"
-  className="inline-block px-8 py-5 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
-  data-primary="blue-600"
-  data-rounded="rounded-lg"
->
-  Get Started Today
-</a>
-
-*/

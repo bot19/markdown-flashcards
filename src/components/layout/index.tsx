@@ -72,7 +72,7 @@ export const Layout = (props: ILayout) => {
               className={classNames(
                 "flex flex-col h-full",
                 "max-w-[1024px] mx-auto",
-                "p-16",
+                "p-16 pb-0",
                 "relative",
                 "transition-opacity duration-500",
                 { "opacity-100": isInQuiz },
@@ -104,9 +104,9 @@ const Header = () => (
       <p className="mb-2 font-medium text-gray-400">
         <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents
       </p>
-      <h2 className="text-5xl font-bold text-gray-900 xl:text-6xl">
+      <h1 className="text-5xl font-bold text-gray-900 xl:text-6xl">
         {APP_CONFIG.quizInfo.name}
-      </h2>
+      </h1>
     </div>
 
     <p className="text-2xl text-gray-700">{APP_CONFIG.quizInfo.description}</p>
