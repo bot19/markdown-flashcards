@@ -2,6 +2,7 @@ import * as React from "react";
 import { ReducerState } from "../../state/Types";
 import { APP_CONFIG } from "../../config";
 import classNames from "classnames";
+import { ProgressBar } from "../progressBar";
 
 interface ILayout {
   children: React.ReactNode;
@@ -10,13 +11,6 @@ interface ILayout {
 
 export const Layout = (props: ILayout) => {
   const isInQuiz = typeof props.state.general.quizStatus === "number";
-  const sessionProgress = isInQuiz
-    ? Math.ceil(
-        ((props.state.general.quizStatus as number) /
-          props.state.currentSession.sessionQuestions.length) *
-          100
-      )
-    : 0;
 
   return (
     <div
@@ -87,25 +81,13 @@ export const Layout = (props: ILayout) => {
                 }
               )}
             >
-              <div
-                className={classNames(
-                  "absolute left-16 top-0",
-                  "w-[calc(100%-8rem)] h-4",
-                  "bg-blue-300",
-                  "transition-opacity duration-500",
-                  { "opacity-100": isInQuiz },
-                  {
-                    "opacity-0": !isInQuiz,
-                  }
-                )}
-              >
-                <div
-                  className={classNames("bg-blue-500 h-full")}
-                  style={{
-                    width: `${sessionProgress > 100 ? 100 : sessionProgress}%`,
-                  }}
-                />
-              </div>
+              <ProgressBar
+                isInQuiz={isInQuiz}
+                quizStatus={props.state.general.quizStatus}
+                sessionProgressLength={
+                  props.state.currentSession.sessionQuestions.length
+                }
+              />
 
               {props.children}
             </div>
