@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
 import classNames from "classnames";
 import { Button } from "../button";
@@ -33,7 +33,7 @@ export const QuizSession = ({
         <span>[{slideQuestionData.key}]</span>
       </div>
 
-      <Answer />
+      <Answer currentQuestion={state.general.quizStatus} />
 
       <div className={classNames("flex justify-center", "gap-4", "py-8")}>
         <Button
@@ -60,8 +60,16 @@ export const QuizSession = ({
   );
 };
 
-const Answer = () => {
+interface IAnswer {
+  currentQuestion: string | number;
+}
+
+const Answer = (props: IAnswer) => {
   const [showAnswer, setShowAnswer] = useState(false);
+
+  useEffect(() => {
+    setShowAnswer(false);
+  }, [props.currentQuestion]);
 
   return (
     <div

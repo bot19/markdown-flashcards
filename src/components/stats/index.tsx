@@ -29,11 +29,16 @@ export const Stats = (props: IStats) => {
       className={classNames(
         "text-gray-500",
         props.className,
-        "flex gap-4",
-        "w-[30rem]"
+        "md:flex md:gap-4",
+        "md:w-[30rem]"
       )}
     >
-      <div className="grow">
+      <div
+        className={classNames(
+          "max-w-[20rem] md:max-w-none md:grow",
+          "mb-4 md:mb-0"
+        )}
+      >
         <div className="text-black">Quiz</div>
 
         {quizStats.map((row) => (
@@ -41,7 +46,7 @@ export const Stats = (props: IStats) => {
         ))}
       </div>
 
-      <div className="grow">
+      <div className={classNames("max-w-[20rem] md:max-w-none md:grow")}>
         <div className="text-black">Session</div>
 
         {sessionStats.map((row) => (

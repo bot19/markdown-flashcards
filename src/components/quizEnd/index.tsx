@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
+import { Button } from "../button";
+import { Stats } from "../stats";
 
+// colour: orchid
 export const QuizEnd = ({
   state,
   dispatch,
@@ -15,26 +18,20 @@ export const QuizEnd = ({
   }, []);
 
   return (
-    <div
-      style={{
-        border: "5px solid orchid",
-        padding: "20px",
-        margin: "20px",
-      }}
-    >
-      <h1>Quiz end</h1>
+    <div>
+      <h2 className="text-3xl font-bold mb-8">Quiz end</h2>
 
-      <div>Stats table (coming soon).</div>
+      <Stats state={state} className="mb-8" />
 
-      <button
-        onClick={() =>
+      <Button
+        customText="Back to start"
+        theme="clear"
+        callback={() =>
           dispatch({
             type: "UPDATE_QUIZ_SESSION_RESTART",
           })
         }
-      >
-        Back to start
-      </button>
+      />
     </div>
   );
 };

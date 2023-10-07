@@ -36,7 +36,7 @@ export const Layout = (props: ILayout) => {
               "absolute inset-y-0 z-10",
               "bg-white drop-shadow-2xl",
               "rounded-r-3xl",
-              "w-10/12",
+              "w-full md:w-11/12 lg:w-10/12",
               "transition-all duration-500",
               { "left-0": !isInQuiz },
               {
@@ -47,7 +47,7 @@ export const Layout = (props: ILayout) => {
             <div
               className={classNames(
                 "flex flex-col h-full",
-                "p-16 pb-0",
+                "p-6 md:p-10 xl:p-16 !pb-0",
                 "transition-all duration-500",
                 { "opacity-100": !isInQuiz },
                 {
@@ -71,7 +71,7 @@ export const Layout = (props: ILayout) => {
             <div
               className={classNames(
                 "flex flex-col grow",
-                "max-w-[1024px] mx-auto",
+                "w-full max-w-[1024px] mx-auto",
                 "p-16 pb-0",
                 "relative",
                 "transition-opacity duration-500",
@@ -104,12 +104,19 @@ const Header = () => (
       <p className="mb-2 font-medium text-gray-400">
         <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents
       </p>
-      <h1 className="text-5xl font-bold text-gray-900 xl:text-6xl">
+      <h1
+        className={classNames(
+          "font-bold text-gray-900",
+          "text-3xl md:text-5xl xl:text-6xl"
+        )}
+      >
         {APP_CONFIG.quizInfo.name}
       </h1>
     </div>
 
-    <p className="text-2xl text-gray-700">{APP_CONFIG.quizInfo.description}</p>
+    <p className={classNames("text-gray-700", "text-xl md:text-2xl")}>
+      {APP_CONFIG.quizInfo.description}
+    </p>
   </div>
 );
 
