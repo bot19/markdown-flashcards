@@ -1,6 +1,6 @@
-# Software Engineering Flashcards
+# Markdown Flashcards
 
-Flashcard app for software engineering terms and concepts
+A Flashcard app that reads from markdown files. WIP. Will update this post `1.0.0` release.
 
 ## 🖥️ Tech
 
