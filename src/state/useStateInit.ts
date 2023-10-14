@@ -4,11 +4,12 @@ import { initialState } from "./initialState";
 import { getLocalStorage } from "../helpers";
 import { KEYS_LOCAL_STORAGE } from "../constants";
 import { ReducerState } from "../state/Types";
+import { AllQuestions } from "../Types";
 
 const initialStateDefault = initialState;
 
 // TODO: fix TS data
-export const useStateInit = (data) => {
+export const useStateInit = (data: AllQuestions) => {
   // 1: setup state obj from localStorage OR default
   const appState = getLocalStorage(KEYS_LOCAL_STORAGE.APP_STATE);
   const initialState = (appState || initialStateDefault) as ReducerState;
@@ -25,7 +26,7 @@ export const useStateInit = (data) => {
     if (isInit.current) {
       dispatch({
         type: "UPDATE_QUIZ_INIT",
-        value: data?.allFile?.nodes || [],
+        value: data?.questionsData?.nodes || [],
       });
       isInit.current = false; // app initialised
     }

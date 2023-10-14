@@ -8,11 +8,18 @@ import { AllQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
 import { APP_CONFIG } from "../config";
 
-const QuizPage = ({ data }: { data: AllQuestions }) => {
-  const { state, dispatch } = useStateInit(data);
+interface IQuizPage {
+  data: AllQuestions;
+}
+
+const QuizPage = (props: IQuizPage) => {
+  const { state, dispatch } = useStateInit(props.data);
 
   // persist Q .md data for access at diff app stages
-  setLocalStorage(KEYS_LOCAL_STORAGE.ALL_QS_DATA, data?.allFile?.nodes || []);
+  setLocalStorage(
+    KEYS_LOCAL_STORAGE.ALL_QS_DATA,
+    props.data?.questionsData?.nodes || []
+  );
 
   // update localStorage on state change
   useEffect(() => {
@@ -41,10 +48,18 @@ export default QuizPage;
 // https://www.gatsbyjs.com/docs/tutorial/part-4/#queries-in-page-components-create-a-blog-page-with-a-list-of-post-filenames
 export const query = graphql`
   query AllQuestions {
-    allFile(filter: { sourceInstanceName: { eq: "questions" } }) {
+    questionsData: allMarkdownRemark {
       nodes {
-        key: name
-        id
+        frontmatter {
+          author
+          category
+          created
+          links
+          modified
+          tags
+          title
+        }
+        html
       }
       pageInfo {
         totalCount

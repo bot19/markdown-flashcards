@@ -1,7 +1,7 @@
 import { QuestionsDataArr, ReducerState } from "./state/Types";
 
 export type AllQuestions = {
-  allFile: {
+  questionsData: {
     nodes: QuestionsDataArr;
     pageInfo: { totalCount: number };
   };
