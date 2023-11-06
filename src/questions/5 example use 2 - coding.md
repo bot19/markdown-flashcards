@@ -1,10 +1,9 @@
 ---
 title: What's the point of this app?
-category: test
+category: introduction
 tags: [test, test1, test2]
-created: 2021-01-01
-modified: 2021-01-01
-author: person
+created: 2023-11-11
+modified: 2023-11-11
 links:
   [
     "https://www.youtube.com/watch?v=dQw4w9WgXcQ",

@@ -51,7 +51,6 @@ export const query = graphql`
     questionsData: allMarkdownRemark {
       nodes {
         frontmatter {
-          author
           category
           created
           links

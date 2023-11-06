@@ -1,10 +1,9 @@
 ---
 title: Hey there, welcome to my Markdown Flashcards app. Click the answer below to read more!
-category: test
+category: introduction
 tags: [test, test1, test2]
-created: 2021-01-01
-modified: 2021-01-01
-author: person
+created: 2023-11-11
+modified: 2023-11-11
 links:
   [
     "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -12,10 +11,10 @@ links:
   ]
 ---
 
-Glad you clicked the answer.
+Glad you clicked the answer and congrats on the successful install + run.
 
-You can see this as a short 6 part tutorial aimed to address the whats & whys of this app.
+You can see this as a short 6 part tutorial aimed to address the whats &amp; whys of this app.
 
-If you're one of those devs that want the 1 line tl;dr so you can be on your way, I guess the fist line of README.md should have suffice.
+The 1 line TL;DR is "A Flashcard app that reads from markdown files."
 
-For everyone else willing to read the docs, you can see this as a kind of docs for the app.
+Have a flick through if you wish to understand more.
