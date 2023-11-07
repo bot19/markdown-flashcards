@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import hljs from "highlight.js";
 import { ReducerAction, ReducerState } from "../../state/Types";
 import classNames from "classnames";
 import { Button } from "../button";
@@ -75,7 +76,11 @@ interface IAnswer {
 const Answer = (props: IAnswer) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
+  // TODO: meant to work in useEffect, but only works like this...
+  hljs.highlightAll();
+
   useEffect(() => {
+    hljs.highlightAll();
     setShowAnswer(false);
   }, [props.currentQuestion]);
 
@@ -88,7 +93,8 @@ const Answer = (props: IAnswer) => {
         { "items-start justify-start": showAnswer },
         "border-2 border-dashed border-gray-400 rounded-xl",
         "bg-gray-200",
-        "h-0 overflow-y-scroll"
+        "h-0 overflow-y-scroll",
+        "relative"
       )}
     >
       {!showAnswer && (
@@ -99,14 +105,18 @@ const Answer = (props: IAnswer) => {
         />
       )}
 
-      {showAnswer && (
-        <div className={classNames("p-8")}>
-          <div
-            className={classNames(styles.answer, "text-xl")}
-            dangerouslySetInnerHTML={{ __html: props.answer }}
-          />
-        </div>
-      )}
+      <div
+        className={classNames(
+          "p-8",
+          { "absolute inset-0 -z-10 invisible overflow-hidden": !showAnswer },
+          { "w-full": showAnswer }
+        )}
+      >
+        <div
+          className={classNames(styles.answer, "text-xl")}
+          dangerouslySetInnerHTML={{ __html: props.answer }}
+        />
+      </div>
     </div>
   );
 };

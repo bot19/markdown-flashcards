@@ -62,11 +62,16 @@
   @apply hover:text-gray-600 transition-colors duration-300;
 }
 
-.answer > code {
+.answer p > code {
   @apply rounded-lg;
-  @apply p-1;
+  @apply p-1 mr-1;
   @apply ring-2;
   @apply bg-gray-300;
   @apply ring-gray-400;
   @apply text-base;
+}
+
+.answer > pre {
+  @apply rounded-xl;
+  @apply overflow-hidden;
 }

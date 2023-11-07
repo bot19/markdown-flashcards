@@ -7,6 +7,7 @@ import { setLocalStorage, processRawData } from "../helpers";
 import { AllRawQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
 import { APP_CONFIG } from "../config";
+import "highlight.js/styles/github-dark.css";
 
 interface IQuizPage {
   data: AllRawQuestions;
