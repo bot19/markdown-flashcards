@@ -15,7 +15,12 @@ export const updateQuizInit = (
   state: ReducerState,
   QuestionsDataArr: ProcessedQsData
 ): ReducerState => {
-  const allQuestions = QuestionsDataArr.map((q) => q.key);
+  // all question keys array sorting
+  const allQsKeys = QuestionsDataArr.map((q) => q.key);
+  const allQuestions = APP_CONFIG.shuffleQuestions
+    ? [...allQsKeys].sort(() => 0.5 - Math.random())
+    : [...allQsKeys].sort();
+
   const questionsRemaining = updateQsRemaining(
     allQuestions,
     state.currentQuiz.questionsRemaining

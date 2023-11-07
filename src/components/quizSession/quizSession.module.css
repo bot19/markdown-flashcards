@@ -1,7 +1,72 @@
-.answer p {
+.answer {
+  @apply text-gray-900;
+}
+
+.answer > * {
   @apply mb-8;
 }
 
-.answer p:last-child {
+.answer > *:last-child {
   @apply mb-0;
+}
+
+.answer > h2 {
+  @apply text-4xl;
+  @apply font-bold;
+}
+
+.answer > h3 {
+  @apply text-3xl;
+  @apply font-semibold;
+}
+
+.answer > h4 {
+  @apply text-2xl;
+  @apply font-semibold;
+}
+
+.answer > h5 {
+  @apply font-bold;
+}
+
+.answer > ul {
+  @apply list-disc list-inside;
+}
+
+.answer > ol {
+  @apply list-decimal list-inside;
+}
+
+.answer > p {
+  @apply leading-relaxed;
+}
+
+.answer > blockquote {
+  @apply border-l-4 border-gray-400;
+  @apply pl-4;
+  @apply italic;
+  @apply text-gray-600;
+}
+
+.answer strong {
+  @apply font-bold;
+}
+
+.answer em {
+  @apply italic;
+}
+
+.answer a {
+  @apply underline;
+  @apply cursor-pointer;
+  @apply hover:text-gray-600 transition-colors duration-300;
+}
+
+.answer > code {
+  @apply rounded-lg;
+  @apply p-1;
+  @apply ring-2;
+  @apply bg-gray-300;
+  @apply ring-gray-400;
+  @apply text-base;
 }

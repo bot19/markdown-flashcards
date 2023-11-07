@@ -3,10 +3,7 @@ import { ReducerAction, ReducerState } from "../../state/Types";
 import classNames from "classnames";
 import { Button } from "../button";
 // TODO: works, fix: https://stackoverflow.com/questions/61378768/how-to-make-module-css-works-with-typescript-in-a-gatsby-application
-import * as answerStyles from "./quizSession.module.css";
-
-const EXAMPLE_QUESTION =
-  "This is where the question will go, they will be of varying lengths, which will affect the layout and its styling, cool?";
+import * as styles from "./quizSession.module.css";
 
 /**
  *
@@ -19,9 +16,11 @@ export const QuizSession = ({
   state: ReducerState;
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
-  const slideQuestionData = state.currentSession.sessionQuestions.find(
+  const slideData = state.currentSession.sessionQuestions.find(
     (qData) => qData.key === state.currrentQuestion.key
   )!;
+
+  console.log("Q data", slideData);
 
   // TODO: hook up button questions.
   return (
@@ -33,12 +32,15 @@ export const QuizSession = ({
             "text-3xl md:text-5xl xl:text-6xl"
           )}
         >
-          {EXAMPLE_QUESTION}
+          {slideData.frontmatter.title}
         </h1>
-        <span>[{slideQuestionData.key}]</span>
+        <span>[{slideData.key}]</span>
       </div>
 
-      <Answer currentQuestion={state.general.quizStatus} />
+      <Answer
+        currentQuestion={state.general.quizStatus}
+        answer={slideData.html}
+      />
 
       <div className={classNames("flex justify-center", "gap-4", "py-8")}>
         <Button
@@ -47,7 +49,7 @@ export const QuizSession = ({
           callback={() =>
             dispatch({
               type: "UPDATE_ANSWER_WRONG",
-              value: slideQuestionData.key,
+              value: slideData.key,
             })
           }
         />
@@ -56,7 +58,7 @@ export const QuizSession = ({
           callback={() =>
             dispatch({
               type: "UPDATE_ANSWER_RIGHT",
-              value: slideQuestionData.key,
+              value: slideData.key,
             })
           }
         />
@@ -66,6 +68,7 @@ export const QuizSession = ({
 };
 
 interface IAnswer {
+  answer: string;
   currentQuestion: string | number;
 }
 
@@ -98,83 +101,12 @@ const Answer = (props: IAnswer) => {
 
       {showAnswer && (
         <div className={classNames("p-8")}>
-          {Math.random() > 0.5 ? <ShortAnswer /> : <LongAnswer />}
+          <div
+            className={classNames(styles.answer, "text-xl")}
+            dangerouslySetInnerHTML={{ __html: props.answer }}
+          />
         </div>
       )}
-    </div>
-  );
-};
-
-const ShortAnswer = () => {
-  return (
-    <div className={answerStyles.answer}>
-      <p>ptas qui quis est repellat ea esse eum.</p>
-      <p>
-        Commodi deleniti tenetur est accusantium. Dolore sed perspiciatis
-        asperiores a. Consequatur repellat excepturi ab. Pariatur labore
-        consequatur perferendis non voluptatem molestiae molestiae veniam.
-        Asperiores aut consectetur aut facilis tempore quas in esse. Nihil
-        consequuntur nostrum debitis molestiae consequuntur ut.
-      </p>
-    </div>
-  );
-};
-
-const LongAnswer = () => {
-  return (
-    <div className={answerStyles.answer}>
-      <p>ptas qui quis est repellat ea esse eum.</p>
-      <p>
-        Commodi deleniti tenetur est accusantium. Dolore sed perspiciatis
-        asperiores a. Consequatur repellat excepturi ab. Pariatur labore
-        consequatur perferendis non voluptatem molestiae molestiae veniam.
-        Asperiores aut consectetur aut facilis tempore quas in esse. Nihil
-        consequuntur nostrum debitis molestiae consequuntur ut.
-      </p>
-      <p>
-        Voluptatibus ad alias inventore qui a adipisci rerum consequatur. Hic
-        ullam qui doloremque sed repellendus id minima. Sed corrupti vitae et
-        repellat expedita adipisci quam sit.
-      </p>
-      <p>
-        Vitae non non sapiente ex est. Sunt sequi blanditiis asperiores qui.
-        Veniam adipisci atque molestias et optio delectus placeat. Officia ut
-        reprehenderit molestiae sunt est excepturi occaecati. Quam accusamus
-        nemo eum voluptas veritatis quia laborum.
-      </p>
-      <p>
-        Asperiores omnis ut quaerat maxime alias delectus velit est. Veniam eum
-        ratione neque dolorem ea earum. Similique eveniet placeat aut aliquam
-        veritatis velit eos qui. Iste suscipit officiis aliquid ipsa iure.
-        Molestiae asperiores dolorem minus doloribus ullam adipisci sunt. Id
-        saepe odit quisquam amet quaerat ullam.
-      </p>
-      <p>ptas qui quis est repellat ea esse eum.</p>
-      <p>
-        Commodi deleniti tenetur est accusantium. Dolore sed perspiciatis
-        asperiores a. Consequatur repellat excepturi ab. Pariatur labore
-        consequatur perferendis non voluptatem molestiae molestiae veniam.
-        Asperiores aut consectetur aut facilis tempore quas in esse. Nihil
-        consequuntur nostrum debitis molestiae consequuntur ut.
-      </p>
-      <p>
-        Voluptatibus ad alias inventore qui a adipisci rerum consequatur. Hic
-        ullam qui doloremque sed repellendus id minima. Sed corrupti vitae et
-        repellat expedita adipisci quam sit.
-      </p>
-      <p>
-        Vitae non non sapiente ex est. Sunt sequi blanditiis asperiores qui.
-        Veniam adipisci atque molestias et optio delectus placeat. Officia ut
-        reprehenderit molestiae sunt est excepturi occaecati. Quam accusamus
-        nemo eum voluptas veritatis quia laborum.
-      </p>
-      <p>
-        Asperiores omnis ut quaerat maxime alias delectus velit est. Veniam eum
-        ratione neque dolorem ea earum. Similique eveniet placeat aut aliquam
-        veritatis velit eos qui. Iste suscipit officiis aliquid ipsa iure.
-        Molestiae asperiores dolorem minus doloribus ullam adipisci sunt. Id
-        saepe odit quisquam amet quaerat ullam.
-      </p>
     </div>
   );
 };
