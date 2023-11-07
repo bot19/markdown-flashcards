@@ -27,7 +27,12 @@ export const QuizSession = ({
   return (
     <div className={classNames("flex flex-col grow")}>
       <div className="pb-16">
-        <h1 className="text-5xl font-bold text-gray-900 xl:text-6xl">
+        <h1
+          className={classNames(
+            "font-bold text-gray-900",
+            "text-3xl md:text-5xl xl:text-6xl"
+          )}
+        >
           {EXAMPLE_QUESTION}
         </h1>
         <span>[{slideQuestionData.key}]</span>

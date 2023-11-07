@@ -1,5 +1,5 @@
-import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
-import { APP_CONFIG } from "../config";
+import { ReducerState } from "./Types";
+// import { APP_CONFIG } from "../config";
 
 /**
  * update state template

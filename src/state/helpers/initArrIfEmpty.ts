@@ -1,4 +1,5 @@
-import { QuestionsArr, QuestionsDataArr } from "../Types";
+import { QuestionsArr } from "../Types";
+import { ProcessedQsData } from "../../Types";
 
 /**
  * basically to check if localStorage data is avail, YES use that, NO use init data
@@ -7,8 +8,8 @@ import { QuestionsArr, QuestionsDataArr } from "../Types";
  * @returns (data)[]
  */
 export const initArrIfEmpty = (
-  arrToCheck: QuestionsArr | QuestionsDataArr,
-  initArrData: QuestionsArr | QuestionsDataArr
+  arrToCheck: QuestionsArr | ProcessedQsData,
+  initArrData: QuestionsArr | ProcessedQsData
 ) => {
   if (!arrToCheck.length) return [...initArrData];
 

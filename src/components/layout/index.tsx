@@ -56,6 +56,7 @@ export const Layout = (props: ILayout) => {
               )}
             >
               <Header />
+
               <div
                 className={classNames("grow", {
                   hidden: isInQuiz,
@@ -63,6 +64,7 @@ export const Layout = (props: ILayout) => {
               >
                 {props.children}
               </div>
+
               <Footer />
             </div>
           </div>

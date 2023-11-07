@@ -3,7 +3,7 @@ import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
 import { APP_CONFIG } from "../config";
 import { getLocalStorage } from "../helpers";
 import { KEYS_LOCAL_STORAGE } from "../constants";
-import { QuestionsDataArr } from "../state/Types";
+import { ProcessedQsData } from "../Types";
 
 /**
  * update state on quiz session start
@@ -23,7 +23,7 @@ export const updateQuizSessionRestart = (state: ReducerState): ReducerState => {
   );
   // get all Qs data to get next sessionQuestions (3-2)
   // FIXME: TS
-  const allQsData: QuestionsDataArr = getLocalStorage(
+  const allQsData: ProcessedQsData = getLocalStorage(
     KEYS_LOCAL_STORAGE.ALL_QS_DATA
   );
   const sessionQuestions = allQsData

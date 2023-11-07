@@ -1,6 +1,6 @@
+import { ProcessedQsData } from "../Types";
+
 export type QuestionsArr = string[];
-export type QuestionDataObject = { key: string; id: string };
-export type QuestionsDataArr = QuestionDataObject[];
 
 export type ReducerState = {
   // section 1
@@ -51,7 +51,7 @@ export type ReducerState = {
     number: number; // 3-1
     // a-start init, 1st calc OR localStorage
     // a-end re-calc for next quiz session (new set of Qs)
-    sessionQuestions: QuestionsDataArr; // 3-2
+    sessionQuestions: ProcessedQsData; // 3-2
     // a-start init, [] OR localStorage
     // update each quiz session & clicked on correct answer
     // a-start to reset to [], a-end to keep for stats
@@ -73,7 +73,7 @@ export type ReducerState = {
 
 type ActionUpdateQuizInit = {
   type: "UPDATE_QUIZ_INIT";
-  value: QuestionsDataArr;
+  value: ProcessedQsData;
 };
 
 type ActionUpdateQuizSessionStart = {

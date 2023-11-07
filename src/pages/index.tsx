@@ -3,23 +3,28 @@ import type { HeadFC } from "gatsby";
 import { graphql } from "gatsby";
 import { useStateInit } from "../state/useStateInit";
 import { Layout, QuizEnd, QuizSession, QuizStart } from "../components";
-import { setLocalStorage } from "../helpers";
-import { AllQuestions } from "../Types";
+import { setLocalStorage, processRawData } from "../helpers";
+import { AllRawQuestions } from "../Types";
 import { KEYS_LOCAL_STORAGE } from "../constants";
 import { APP_CONFIG } from "../config";
 
 interface IQuizPage {
-  data: AllQuestions;
+  data: AllRawQuestions;
 }
 
 const QuizPage = (props: IQuizPage) => {
-  const { state, dispatch } = useStateInit(props.data);
+  // process raw data into shape we want
+  const markDownData = processRawData(props.data?.questionsData?.nodes || []);
+
+  const { state, dispatch } = useStateInit({
+    questionsData: {
+      nodes: markDownData,
+      pageInfo: props.data?.questionsData?.pageInfo,
+    },
+  });
 
   // persist Q .md data for access at diff app stages
-  setLocalStorage(
-    KEYS_LOCAL_STORAGE.ALL_QS_DATA,
-    props.data?.questionsData?.nodes || []
-  );
+  setLocalStorage(KEYS_LOCAL_STORAGE.ALL_QS_DATA, markDownData);
 
   // update localStorage on state change
   useEffect(() => {
@@ -50,6 +55,7 @@ export const query = graphql`
   query AllQuestions {
     questionsData: allMarkdownRemark {
       nodes {
+        id
         frontmatter {
           category
           created
@@ -59,6 +65,11 @@ export const query = graphql`
           title
         }
         html
+        parent {
+          ... on File {
+            name
+          }
+        }
       }
       pageInfo {
         totalCount

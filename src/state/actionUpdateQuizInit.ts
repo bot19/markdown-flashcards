@@ -1,7 +1,8 @@
-import { QuestionsArr, QuestionsDataArr, ReducerState } from "./Types";
+import { QuestionsArr, ReducerState } from "./Types";
 import { APP_CONFIG } from "../config";
 import { initArrIfEmpty } from "./helpers/initArrIfEmpty";
 import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
+import { ProcessedQsData } from "../Types";
 
 /**
  * update state on quiz load / init
@@ -12,7 +13,7 @@ import { quizSessionsRemaining } from "./helpers/quizSessionsRemaining";
  */
 export const updateQuizInit = (
   state: ReducerState,
-  QuestionsDataArr: QuestionsDataArr
+  QuestionsDataArr: ProcessedQsData
 ): ReducerState => {
   const allQuestions = QuestionsDataArr.map((q) => q.key);
   const questionsRemaining = updateQsRemaining(
@@ -93,7 +94,7 @@ const updateQsRemaining = (
  */
 const getSessionQsData = (
   sessionQuestions: QuestionsArr,
-  QuestionsDataArr: QuestionsDataArr
+  QuestionsDataArr: ProcessedQsData
 ) => {
   return sessionQuestions.reduce((accumulator, currentValue) => {
     // sessionQuestions is made from QuestionsDataArr ultimately, so will never be undefined
@@ -102,5 +103,5 @@ const getSessionQsData = (
     accumulator.push(qData);
 
     return accumulator;
-  }, [] as QuestionsDataArr);
+  }, [] as ProcessedQsData);
 };
