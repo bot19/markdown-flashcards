@@ -9,6 +9,8 @@ import { ReducerState } from "./Types";
 export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
   const isQuizDone = state.currentQuiz.questionsRemaining.length === 0;
 
+  console.log("END state", state.currentSession.number);
+
   const newState: ReducerState = {
     general: {
       ...state.general,
@@ -20,8 +22,6 @@ export const updateQuizSessionEnd = (state: ReducerState): ReducerState => {
     },
     currentSession: {
       ...state.currentSession,
-      // 3-1: session just completed, +1 TODO: MOVE
-      number: state.currentSession.number + 1,
     },
     currrentQuestion: {
       // already set going from last Q to END (quiz)

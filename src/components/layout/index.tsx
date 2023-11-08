@@ -57,13 +57,7 @@ export const Layout = (props: ILayout) => {
             >
               <Header />
 
-              <div
-                className={classNames("grow", {
-                  hidden: isInQuiz,
-                })}
-              >
-                {props.children}
-              </div>
+              <div className="grow">{!isInQuiz && props.children}</div>
 
               <Footer />
             </div>
@@ -91,7 +85,7 @@ export const Layout = (props: ILayout) => {
                 }
               />
 
-              {props.children}
+              {isInQuiz && props.children}
             </div>
           </div>
         </div>

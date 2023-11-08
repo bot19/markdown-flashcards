@@ -65,15 +65,15 @@ export const updateQuizSessionRestart = (state: ReducerState): ReducerState => {
     },
     currentSession: {
       ...state.currentSession,
-      // 3-1: if new quiz, reset
-      number: quizReset ? 1 : state.currentSession.number,
-      // 3-2: a-end re-calc for next quiz session (new set of Qs) TODO: MOVE
+      // 3-1: if new quiz, reset, or session just completed, +1
+      number: quizReset ? 1 : state.currentSession.number + 1,
+      // 3-2: a-end re-calc for next quiz session (new set of Qs)
       sessionQuestions,
       // 3-3: a-start to reset to [], a-end to keep for stats
       correctAnswers: [],
       // 3-4: same as above for incorrect answers
       incorrectAnswers: [],
-      // 3-5: a-end re-calc for next quiz session (new set of Qs) TODO: MOVE
+      // 3-5: a-end re-calc for next quiz session (new set of Qs)
       questionsRemaining,
     },
     currrentQuestion: {
