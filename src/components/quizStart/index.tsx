@@ -20,7 +20,6 @@ export const QuizStart = ({
 
       <Stats
         state={state}
-        className="mb-8"
         box1={{
           title: "Quiz",
           values: [

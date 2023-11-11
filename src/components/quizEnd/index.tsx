@@ -26,7 +26,6 @@ export const QuizEnd = ({
 
       <Stats
         state={state}
-        className="mb-8"
         box1={{
           title: "Quiz",
           values: ["quiz-number", "total-questions", "quiz-qs-remaining"],
@@ -34,6 +33,11 @@ export const QuizEnd = ({
         box2={{
           title: "Session",
           values: ["session-number", "session-remaining", "session-questions"],
+        }}
+        boxQuestionsStats={{
+          correctAnswers: state.currentQuiz.correctAnswers,
+          incorrectAnswers: state.currentQuiz.incorrectAnswers,
+          allQuestions: state.currentQuiz.allQuestions,
         }}
       />
 

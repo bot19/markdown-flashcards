@@ -7,12 +7,17 @@ type StatsBox = {
   values: string[];
 };
 
+type BoxQuestionsStats = {
+  correctAnswers: string[];
+  incorrectAnswers: string[];
+  allQuestions: string[];
+};
+
 interface IStats {
   state: ReducerState;
-  className?: string;
   box1: StatsBox;
   box2?: StatsBox;
-  boxQuestionsStats?: boolean;
+  boxQuestionsStats?: BoxQuestionsStats;
 }
 
 type IQuizStat = {
@@ -74,41 +79,48 @@ export const Stats = (props: IStats) => {
   ];
 
   return (
-    <div
-      className={classNames(
-        "text-gray-500",
-        props.className,
-        "md:flex md:gap-4",
-        "md:w-[30rem]"
-      )}
-    >
+    <>
       <div
         className={classNames(
-          "max-w-[20rem] md:max-w-none md:grow",
-          "mb-4 md:mb-0"
+          "text-gray-500",
+          "md:flex md:gap-4",
+          "md:w-[30rem]",
+          "mb-8"
         )}
       >
-        <div className="text-black">{props.box1.title}</div>
+        <div
+          className={classNames(
+            "max-w-[20rem] md:max-w-none md:basis-1/2",
+            "mb-4 md:mb-0"
+          )}
+        >
+          <div className="text-black">{props.box1.title}</div>
 
-        {props.box1.values.map((row) => {
-          const stats = quizStats.find((stat) => stat.key === row)!;
-
-          return <StatRow key={`quizStats_${stats.key}`} stats={stats} />;
-        })}
-      </div>
-
-      {props.box2 && (
-        <div className={classNames("max-w-[20rem] md:max-w-none md:grow")}>
-          <div className="text-black">{props.box2.title}</div>
-
-          {props.box2.values.map((row) => {
+          {props.box1.values.map((row) => {
             const stats = quizStats.find((stat) => stat.key === row)!;
 
             return <StatRow key={`quizStats_${stats.key}`} stats={stats} />;
           })}
         </div>
+
+        {props.box2 && (
+          <div
+            className={classNames("max-w-[20rem] md:max-w-none md:basis-1/2")}
+          >
+            <div className="text-black">{props.box2.title}</div>
+
+            {props.box2.values.map((row) => {
+              const stats = quizStats.find((stat) => stat.key === row)!;
+
+              return <StatRow key={`quizStats_${stats.key}`} stats={stats} />;
+            })}
+          </div>
+        )}
+      </div>
+      {props.boxQuestionsStats && (
+        <BoxQuestionsStats boxQuestionsStats={props.boxQuestionsStats} />
       )}
-    </div>
+    </>
   );
 };
 
@@ -127,5 +139,87 @@ const StatRow = (props: IStatRow) => {
         {props.stats.value}
       </div>
     </div>
+  );
+};
+
+interface IBoxQuestionsStats {
+  boxQuestionsStats: BoxQuestionsStats;
+}
+
+const BoxQuestionsStats = (props: IBoxQuestionsStats) => {
+  return (
+    <div
+      className={classNames(
+        "text-gray-500",
+        "md:flex md:gap-4",
+        "md:w-[30rem]",
+        "mb-8"
+      )}
+    >
+      <div
+        className={classNames(
+          "max-w-[20rem] md:max-w-none md:basis-1/2",
+          "mb-4 md:mb-0",
+          "truncate"
+        )}
+      >
+        <div className="text-black">
+          ✅ Questions:{" "}
+          {renderQsStats(
+            props.boxQuestionsStats.correctAnswers.length,
+            props.boxQuestionsStats.allQuestions.length,
+            "text-green-500"
+          )}
+        </div>
+
+        {props.boxQuestionsStats.correctAnswers.length === 0 &&
+          "No correct questions"}
+
+        {props.boxQuestionsStats.correctAnswers.map((questionKey) => {
+          return <div className="truncate">{questionKey}</div>;
+        })}
+      </div>
+
+      <div
+        className={classNames(
+          "max-w-[20rem] md:max-w-none md:basis-1/2",
+          "truncate"
+        )}
+      >
+        <div className="text-black">
+          ❌ Questions:{" "}
+          {renderQsStats(
+            props.boxQuestionsStats.incorrectAnswers.length,
+            props.boxQuestionsStats.allQuestions.length,
+            "text-red-500"
+          )}
+        </div>
+
+        {props.boxQuestionsStats.incorrectAnswers.length === 0 &&
+          "No incorrect questions"}
+
+        {props.boxQuestionsStats.incorrectAnswers.map((questionKey) => {
+          return <div className="truncate">{questionKey}</div>;
+        })}
+      </div>
+    </div>
+  );
+};
+
+const renderQsStats = (
+  questions: number,
+  allQuestions: number,
+  highlightClass: string
+) => {
+  const percentage = Math.ceil((questions / allQuestions) * 100);
+  const applyHighlight = questions > 0 ? highlightClass : "text-black";
+
+  return (
+    <>
+      {questions}/{allQuestions}{" "}
+      {questions > 0 && (
+        <span className={classNames(applyHighlight)}>{percentage}%</span>
+      )}
+    </>
   );
 };
