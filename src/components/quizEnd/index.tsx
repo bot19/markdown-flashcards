@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ReducerAction, ReducerState } from "../../state/Types";
 import { Button } from "../button";
 import { Stats } from "../stats";
+import classNames from "classnames";
 
 // colour: orchid
 export const QuizEnd = ({
@@ -19,9 +20,22 @@ export const QuizEnd = ({
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-8">Quiz end</h2>
+      <h2 className={classNames("font-bold mb-8", "text-2xl md:text-3xl")}>
+        Quiz end
+      </h2>
 
-      <Stats state={state} className="mb-8" />
+      <Stats
+        state={state}
+        className="mb-8"
+        box1={{
+          title: "Quiz",
+          values: ["quiz-number", "total-questions", "quiz-qs-remaining"],
+        }}
+        box2={{
+          title: "Session",
+          values: ["session-number", "session-remaining", "session-questions"],
+        }}
+      />
 
       <Button
         customText="Back to start"

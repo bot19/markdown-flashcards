@@ -18,7 +18,24 @@ export const QuizStart = ({
         Start
       </h2>
 
-      <Stats state={state} className="mb-8" />
+      <Stats
+        state={state}
+        className="mb-8"
+        box1={{
+          title: "Quiz",
+          values: [
+            "quiz-number",
+            "total-questions",
+            "quiz-qs-remaining",
+            "quiz-qs-correct",
+            "quiz-qs-incorrect",
+          ],
+        }}
+        box2={{
+          title: "Session",
+          values: ["session-number", "session-remaining", "session-questions"],
+        }}
+      />
 
       <Button
         customText={`Start quiz session ${state.currentSession.number}`}
