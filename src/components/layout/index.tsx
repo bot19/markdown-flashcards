@@ -46,7 +46,7 @@ export const Layout = (props: ILayout) => {
           >
             <div
               className={classNames(
-                "flex flex-col h-full",
+                "h-full",
                 "p-6 md:p-10 xl:p-16 !pb-0",
                 "transition-all duration-500",
                 { "opacity-100": !isInQuiz },
@@ -55,11 +55,21 @@ export const Layout = (props: ILayout) => {
                 }
               )}
             >
-              <Header />
+              <div
+                className={classNames(
+                  "grid grid-cols-1",
+                  "grid-rows-[min-content_1fr_min-content]",
+                  "h-full"
+                )}
+              >
+                <Header />
 
-              <div className="grow">{!isInQuiz && props.children}</div>
+                <div className="overflow-y-auto">
+                  {!isInQuiz && props.children}
+                </div>
 
-              <Footer />
+                <Footer />
+              </div>
             </div>
           </div>
 
@@ -119,13 +129,13 @@ const Header = () => (
 const Footer = () => (
   <footer className={classNames("flex items-center", "h-16")}>
     <p className="text-gray-400">
-      Made in 2023 with ♥ / Checkout on{" "}
+      Made in {APP_CONFIG.quizInfo.year} with ♥ / Checkout on{" "}
       <a
-        href="https://github.com/bot19/software-eng-flashcards"
+        href={APP_CONFIG.quizInfo.link}
         target="_blank"
         className={classNames("text-black underline", "hover:no-underline")}
       >
-        Github
+        {APP_CONFIG.quizInfo.linkText}
       </a>
       .
     </p>

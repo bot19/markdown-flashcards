@@ -18,6 +18,16 @@ export const QuizStart = ({
         Start
       </h2>
 
+      <Button
+        customText={`Start quiz session ${state.currentSession.number}`}
+        className="mb-8"
+        callback={() =>
+          dispatch({
+            type: "UPDATE_QUIZ_SESSION_START",
+          })
+        }
+      />
+
       <Stats
         state={state}
         box1={{
@@ -34,15 +44,6 @@ export const QuizStart = ({
           title: "Session",
           values: ["session-number", "session-remaining", "session-questions"],
         }}
-      />
-
-      <Button
-        customText={`Start quiz session ${state.currentSession.number}`}
-        callback={() =>
-          dispatch({
-            type: "UPDATE_QUIZ_SESSION_START",
-          })
-        }
       />
     </div>
   );

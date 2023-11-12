@@ -184,7 +184,7 @@ interface IRenderQsStats {
 
 const RenderQsStats = (props: IRenderQsStats) => {
   const sessionQsCount = props.sessionQuestions.length;
-  const percentage = Math.ceil(
+  const percentage = Math.round(
     (sessionQsCount / props.allSessionQsCount) * 100
   );
   const applyHighlight =

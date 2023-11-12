@@ -24,6 +24,17 @@ export const QuizEnd = ({
         Quiz end
       </h2>
 
+      <Button
+        customText="Back to start"
+        className="mb-8"
+        theme="clear"
+        callback={() =>
+          dispatch({
+            type: "UPDATE_QUIZ_SESSION_RESTART",
+          })
+        }
+      />
+
       <Stats
         state={state}
         box1={{
@@ -47,16 +58,6 @@ export const QuizEnd = ({
             (question) => question.key
           ),
         }}
-      />
-
-      <Button
-        customText="Back to start"
-        theme="clear"
-        callback={() =>
-          dispatch({
-            type: "UPDATE_QUIZ_SESSION_RESTART",
-          })
-        }
       />
     </div>
   );
