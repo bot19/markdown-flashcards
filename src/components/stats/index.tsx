@@ -7,17 +7,17 @@ type StatsBox = {
   values: string[];
 };
 
-type BoxQuestionsStats = {
+type boxSessionQsStats = {
   correctAnswers: string[];
   incorrectAnswers: string[];
-  allQuestions: string[];
+  allSessionQuestions: string[];
 };
 
 interface IStats {
   state: ReducerState;
   box1: StatsBox;
   box2?: StatsBox;
-  boxQuestionsStats?: BoxQuestionsStats;
+  boxSessionQsStats?: boxSessionQsStats;
 }
 
 type IQuizStat = {
@@ -117,8 +117,8 @@ export const Stats = (props: IStats) => {
           </div>
         )}
       </div>
-      {props.boxQuestionsStats && (
-        <BoxQuestionsStats boxQuestionsStats={props.boxQuestionsStats} />
+      {props.boxSessionQsStats && (
+        <BoxSessionQsStats boxSessionQsStats={props.boxSessionQsStats} />
       )}
     </>
   );
@@ -142,11 +142,11 @@ const StatRow = (props: IStatRow) => {
   );
 };
 
-interface IBoxQuestionsStats {
-  boxQuestionsStats: BoxQuestionsStats;
+interface IBoxSessionQsStats {
+  boxSessionQsStats: boxSessionQsStats;
 }
 
-const BoxQuestionsStats = (props: IBoxQuestionsStats) => {
+const BoxSessionQsStats = (props: IBoxSessionQsStats) => {
   return (
     <div
       className={classNames(
@@ -156,70 +156,64 @@ const BoxQuestionsStats = (props: IBoxQuestionsStats) => {
         "mb-8"
       )}
     >
-      <div
-        className={classNames(
-          "max-w-[20rem] md:max-w-none md:basis-1/2",
-          "mb-4 md:mb-0",
-          "truncate"
-        )}
-      >
-        <div className="text-black">
-          ✅ Questions:{" "}
-          {renderQsStats(
-            props.boxQuestionsStats.correctAnswers.length,
-            props.boxQuestionsStats.allQuestions.length,
-            "text-green-500"
-          )}
-        </div>
+      <RenderQsStats
+        classNames="mb-4 md:mb-0"
+        sessionQuestions={props.boxSessionQsStats.correctAnswers}
+        allSessionQsCount={props.boxSessionQsStats.allSessionQuestions.length}
+        highlightClass="text-green-500"
+        emoji="✅"
+      />
 
-        {props.boxQuestionsStats.correctAnswers.length === 0 &&
-          "No correct questions"}
-
-        {props.boxQuestionsStats.correctAnswers.map((questionKey) => {
-          return <div className="truncate">{questionKey}</div>;
-        })}
-      </div>
-
-      <div
-        className={classNames(
-          "max-w-[20rem] md:max-w-none md:basis-1/2",
-          "truncate"
-        )}
-      >
-        <div className="text-black">
-          ❌ Questions:{" "}
-          {renderQsStats(
-            props.boxQuestionsStats.incorrectAnswers.length,
-            props.boxQuestionsStats.allQuestions.length,
-            "text-red-500"
-          )}
-        </div>
-
-        {props.boxQuestionsStats.incorrectAnswers.length === 0 &&
-          "No incorrect questions"}
-
-        {props.boxQuestionsStats.incorrectAnswers.map((questionKey) => {
-          return <div className="truncate">{questionKey}</div>;
-        })}
-      </div>
+      <RenderQsStats
+        sessionQuestions={props.boxSessionQsStats.incorrectAnswers}
+        allSessionQsCount={props.boxSessionQsStats.allSessionQuestions.length}
+        highlightClass="text-red-500"
+        emoji="❌"
+      />
     </div>
   );
 };
 
-const renderQsStats = (
-  questions: number,
-  allQuestions: number,
-  highlightClass: string
-) => {
-  const percentage = Math.ceil((questions / allQuestions) * 100);
-  const applyHighlight = questions > 0 ? highlightClass : "text-black";
+interface IRenderQsStats {
+  classNames?: string;
+  sessionQuestions: string[];
+  allSessionQsCount: number;
+  highlightClass: string;
+  emoji: string;
+}
+
+const RenderQsStats = (props: IRenderQsStats) => {
+  const sessionQsCount = props.sessionQuestions.length;
+  const percentage = Math.ceil(
+    (sessionQsCount / props.allSessionQsCount) * 100
+  );
+  const applyHighlight =
+    sessionQsCount > 0 ? props.highlightClass : "text-black";
 
   return (
-    <>
-      {questions}/{allQuestions}{" "}
-      {questions > 0 && (
-        <span className={classNames(applyHighlight)}>{percentage}%</span>
+    <div
+      className={classNames(
+        "max-w-[20rem] md:max-w-none md:basis-1/2",
+        "truncate",
+        props.classNames
       )}
-    </>
+    >
+      <div className="text-black">
+        {props.emoji} Questions: {sessionQsCount}/{props.allSessionQsCount}{" "}
+        {sessionQsCount > 0 && (
+          <span className={classNames(applyHighlight)}>{percentage}%</span>
+        )}
+      </div>
+
+      {sessionQsCount === 0 && "No questions"}
+
+      {props.sessionQuestions.map((questionKey) => {
+        return (
+          <div className="truncate" key={`question_key_${questionKey}`}>
+            {questionKey}
+          </div>
+        );
+      })}
+    </div>
   );
 };

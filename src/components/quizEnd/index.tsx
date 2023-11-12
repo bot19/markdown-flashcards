@@ -28,16 +28,24 @@ export const QuizEnd = ({
         state={state}
         box1={{
           title: "Quiz",
-          values: ["quiz-number", "total-questions", "quiz-qs-remaining"],
+          values: [
+            "quiz-number",
+            "total-questions",
+            "quiz-qs-remaining",
+            "quiz-qs-correct",
+            "quiz-qs-incorrect",
+          ],
         }}
         box2={{
           title: "Session",
           values: ["session-number", "session-remaining", "session-questions"],
         }}
-        boxQuestionsStats={{
-          correctAnswers: state.currentQuiz.correctAnswers,
-          incorrectAnswers: state.currentQuiz.incorrectAnswers,
-          allQuestions: state.currentQuiz.allQuestions,
+        boxSessionQsStats={{
+          correctAnswers: state.currentSession.correctAnswers,
+          incorrectAnswers: state.currentSession.incorrectAnswers,
+          allSessionQuestions: state.currentSession.sessionQuestions.map(
+            (question) => question.key
+          ),
         }}
       />
 
