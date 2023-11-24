@@ -18,8 +18,10 @@ export const ProgressBar = (props: IProgressBar) => {
   return (
     <div
       className={classNames(
-        "absolute left-16 top-0",
-        "w-[calc(100%-8rem)] h-4",
+        "absolute top-0",
+        "left-4 md:left-16",
+        "w-[calc(100%-2rem)] md:w-[calc(100%-8rem)]",
+        "h-4",
         "bg-blue-300",
         "transition-opacity duration-500",
         { "opacity-100": props.isInQuiz },

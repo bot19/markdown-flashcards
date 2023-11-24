@@ -26,16 +26,16 @@ export const QuizSession = ({
   // TODO: hook up button questions.
   return (
     <div className={classNames("flex flex-col grow")}>
-      <div className="pb-16">
+      <div className="pb-8 md:pb-16">
         <h1
           className={classNames(
             "font-bold text-gray-900",
-            "text-3xl md:text-5xl xl:text-6xl"
+            "text-3xl md:text-5xl"
           )}
         >
           {slideData.frontmatter.title}
         </h1>
-        <span>[{slideData.key}]</span>
+        <span className="text-gray-400">{slideData.key}</span>
       </div>
 
       <Answer
@@ -107,13 +107,13 @@ const Answer = (props: IAnswer) => {
 
       <div
         className={classNames(
-          "p-8",
+          "p-4 md:p-8",
           { "absolute inset-0 -z-10 invisible overflow-hidden": !showAnswer },
           { "w-full": showAnswer }
         )}
       >
         <div
-          className={classNames(styles.answer, "text-xl")}
+          className={classNames(styles.answer, "text-base md:text-xl")}
           dangerouslySetInnerHTML={{ __html: props.answer }}
         />
       </div>

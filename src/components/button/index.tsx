@@ -50,7 +50,8 @@ export const Button = (props: IButtonComponent) => {
   return (
     <button
       className={classNames(
-        "inline-block min-w-[10rem]",
+        "inline-block",
+        "min-w-[8rem] md:min-w-[10rem]",
         "font-medium text-center",
         "transition duration-200 ease",
         "focus:outline-none",
