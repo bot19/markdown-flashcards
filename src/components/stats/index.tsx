@@ -30,6 +30,10 @@ type IQuizStat = {
 
 type IQuizStats = IQuizStat[];
 
+const CS_STATS_GROUP_WIDTH = "md:max-w-2xl md:gap-8";
+const CS_BOX_WIDTH = "max-w-md md:max-w-none md:basis-1/2";
+const CS_STATS_BOT_SPACING = "mb-8";
+
 export const Stats = (props: IStats) => {
   const quizStats: IQuizStats = [
     {
@@ -82,17 +86,14 @@ export const Stats = (props: IStats) => {
     <>
       <div
         className={classNames(
+          CS_STATS_GROUP_WIDTH,
+          CS_STATS_BOT_SPACING,
           "text-gray-500",
-          "md:flex md:gap-4",
-          "md:w-[30rem]",
-          "mb-8"
+          "md:flex"
         )}
       >
         <div
-          className={classNames(
-            "max-w-[20rem] md:max-w-none md:basis-1/2",
-            "mb-4 md:mb-0"
-          )}
+          className={classNames(CS_BOX_WIDTH, CS_STATS_BOT_SPACING, "md:mb-0")}
         >
           <div className="text-black">{props.box1.title}</div>
 
@@ -104,9 +105,7 @@ export const Stats = (props: IStats) => {
         </div>
 
         {props.box2 && (
-          <div
-            className={classNames("max-w-[20rem] md:max-w-none md:basis-1/2")}
-          >
+          <div className={classNames(CS_BOX_WIDTH)}>
             <div className="text-black">{props.box2.title}</div>
 
             {props.box2.values.map((row) => {
@@ -135,7 +134,9 @@ const StatRow = (props: IStatRow) => {
   return (
     <div className="flex">
       <div className="flex-1">{props.stats.question}</div>
-      <div className={classNames("w-[3rem] text-black", highlightClass)}>
+      <div
+        className={classNames("w-[3rem] text-black text-right", highlightClass)}
+      >
         {props.stats.value}
       </div>
     </div>
@@ -150,14 +151,14 @@ const BoxSessionQsStats = (props: IBoxSessionQsStats) => {
   return (
     <div
       className={classNames(
+        CS_STATS_GROUP_WIDTH,
+        CS_STATS_BOT_SPACING,
         "text-gray-500",
-        "md:flex md:gap-4",
-        "md:w-[30rem]",
-        "mb-8"
+        "md:flex"
       )}
     >
       <RenderQsStats
-        classNames="mb-4 md:mb-0"
+        classNames={classNames(CS_STATS_BOT_SPACING, "md:mb-0")}
         sessionQuestions={props.boxSessionQsStats.correctAnswers}
         allSessionQsCount={props.boxSessionQsStats.allSessionQuestions.length}
         highlightClass="text-green-500"
@@ -191,13 +192,7 @@ const RenderQsStats = (props: IRenderQsStats) => {
     sessionQsCount > 0 ? props.highlightClass : "text-black";
 
   return (
-    <div
-      className={classNames(
-        "max-w-[20rem] md:max-w-none md:basis-1/2",
-        "truncate",
-        props.classNames
-      )}
-    >
+    <div className={classNames(CS_BOX_WIDTH, "truncate", props.classNames)}>
       <div className="text-black">
         {props.emoji} Questions: {sessionQsCount}/{props.allSessionQsCount}{" "}
         {sessionQsCount > 0 && (
