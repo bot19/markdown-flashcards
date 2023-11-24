@@ -1,7 +1,9 @@
 import { LocalStorageData } from "../Types";
 
 export const getLocalStorage = (key: string): LocalStorageData | void => {
-  const storedData = localStorage.getItem(key);
+  // TODO: temp fix "localStorage" is not available during server-side rendering
+  const storedData =
+    typeof window !== "undefined" ? localStorage.getItem(key) : null;
 
   if (storedData) return JSON.parse(storedData);
 
