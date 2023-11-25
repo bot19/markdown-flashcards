@@ -4,6 +4,7 @@ import { ReducerAction, ReducerState } from "../../state/Types";
 import classNames from "classnames";
 import { Button } from "../button";
 // TODO: works, fix: https://stackoverflow.com/questions/61378768/how-to-make-module-css-works-with-typescript-in-a-gatsby-application
+// @ts-ignore
 import * as styles from "./quizSession.module.css";
 
 /**
@@ -89,27 +90,26 @@ const Answer = (props: IAnswer) => {
       className={classNames(
         "grow",
         "flex flex-col",
-        { "items-center justify-center": !showAnswer },
-        { "items-start justify-start": showAnswer },
+        "items-center justify-center",
+        { "!items-start !justify-start": showAnswer },
         "border-2 border-dashed border-gray-400 rounded-xl",
         "bg-gray-200",
         "h-0 overflow-y-scroll",
         "relative"
       )}
     >
-      {!showAnswer && (
-        <Button
-          customText="Click to show answer"
-          theme="clear"
-          callback={() => setShowAnswer(true)}
-        />
-      )}
+      <Button
+        customText="Click to show answer"
+        theme="clear"
+        callback={() => setShowAnswer(true)}
+        className={classNames({ hidden: showAnswer })}
+      />
 
       <div
         className={classNames(
           "p-4 md:p-8",
-          { "absolute inset-0 -z-10 invisible overflow-hidden": !showAnswer },
-          { "w-full": showAnswer }
+          "absolute inset-0 -z-10 invisible overflow-hidden",
+          { "w-full !static !visible overflow-visible z-0": showAnswer }
         )}
       >
         <div
