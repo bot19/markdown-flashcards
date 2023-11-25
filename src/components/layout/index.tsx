@@ -138,8 +138,8 @@ const Footer = () => (
         className={classNames("text-black underline", "hover:no-underline")}
       >
         {APP_CONFIG.quizInfo.linkText}
-      </a>
-      .
+      </a>{" "}
+      / v{APP_CONFIG.quizInfo.version}
     </p>
   </footer>
 );
