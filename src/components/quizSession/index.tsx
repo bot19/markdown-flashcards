@@ -7,10 +7,6 @@ import { Button } from "../button";
 // @ts-ignore
 import * as styles from "./quizSession.module.css";
 
-/**
- *
- * ...
- */
 export const QuizSession = ({
   state,
   dispatch,
@@ -22,9 +18,18 @@ export const QuizSession = ({
     (qData) => qData.key === state.currrentQuestion.key
   )!;
 
-  console.log("Q data", slideData);
+  /**
+   * this hide/show state control and the setTimeout below
+   * is to resolve the answer reveal flash from previous question
+   * ie: q1, reveal answer, click correct, q2 flashes revealed answer
+   * before state kicks in to hide it, inadvertently showing q2 answer
+   * don't need setTimeout to resolve, but avoids instant flicker
+   */
+  const [showAnswerElement, setShowAnswerElement] = useState(true);
+  useEffect(() => {
+    setShowAnswerElement(true);
+  }, [state.general.quizStatus]);
 
-  // TODO: hook up button questions.
   return (
     <div className={classNames("flex flex-col grow")}>
       <div className="pb-8 md:pb-16">
@@ -42,27 +47,38 @@ export const QuizSession = ({
       <Answer
         currentQuestion={state.general.quizStatus}
         answer={slideData.html}
+        showAnswerElement={showAnswerElement}
       />
 
       <div className={classNames("flex justify-center", "gap-4", "py-8")}>
         <Button
           customText="Incorrect"
           theme="clear"
-          callback={() =>
-            dispatch({
-              type: "UPDATE_ANSWER_WRONG",
-              value: slideData.key,
-            })
-          }
+          callback={() => {
+            setShowAnswerElement(false);
+            setTimeout(
+              () =>
+                dispatch({
+                  type: "UPDATE_ANSWER_WRONG",
+                  value: slideData.key,
+                }),
+              100
+            );
+          }}
         />
         <Button
           customText="Correct"
-          callback={() =>
-            dispatch({
-              type: "UPDATE_ANSWER_RIGHT",
-              value: slideData.key,
-            })
-          }
+          callback={() => {
+            setShowAnswerElement(false);
+            setTimeout(
+              () =>
+                dispatch({
+                  type: "UPDATE_ANSWER_RIGHT",
+                  value: slideData.key,
+                }),
+              100
+            );
+          }}
         />
       </div>
     </div>
@@ -72,6 +88,7 @@ export const QuizSession = ({
 interface IAnswer {
   answer: string;
   currentQuestion: string | number;
+  showAnswerElement: boolean;
 }
 
 const Answer = (props: IAnswer) => {
@@ -95,7 +112,8 @@ const Answer = (props: IAnswer) => {
         "border-2 border-dashed border-gray-400 rounded-xl",
         "bg-gray-200",
         "h-0 overflow-y-scroll",
-        "relative"
+        "relative",
+        { invisible: !props.showAnswerElement }
       )}
     >
       <Button

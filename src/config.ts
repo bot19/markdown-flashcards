@@ -9,6 +9,6 @@ export const APP_CONFIG = {
     year: "2023",
     link: "https://github.com/bot19/software-eng-flashcards",
     linkText: "Github",
-    version: "0.9.1",
+    version: "0.9.2",
   },
 };
