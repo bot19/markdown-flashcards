@@ -74,7 +74,7 @@ export const Layout = (props: ILayout) => {
             </div>
           </div>
 
-          <div className={classNames("w-screen", "flex flex-col grow")}>
+          <div className={classNames("max-w-[100vw]", "flex flex-col grow")}>
             <div
               className={classNames(
                 "flex flex-col grow",
