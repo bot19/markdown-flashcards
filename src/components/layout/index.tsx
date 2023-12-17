@@ -129,7 +129,13 @@ const Header = () => (
 );
 
 const Footer = () => (
-  <footer className={classNames("flex items-center", "h-16")}>
+  <footer
+    className={classNames(
+      "flex items-center",
+      "h-16",
+      "border-t border-b-gray-200"
+    )}
+  >
     <p className="text-gray-400">
       Made in {APP_CONFIG.quizInfo.year} with ♥ / Checkout on{" "}
       <a
