@@ -4,6 +4,10 @@ import { Button } from "../button";
 import { Stats } from "../stats";
 import classNames from "classnames";
 
+// sometimes Q changes in /questions isn't picked up; reload 1st to fix
+const UPDATE_QUESTIONS_ALERT_TEXT =
+  "If this doesn't show updated questions, reload the page first, then click this button again.";
+
 // colour: mediumaquamarine
 export const QuizStart = ({
   state,
@@ -44,6 +48,19 @@ export const QuizStart = ({
           title: "Session",
           values: ["session-number", "session-remaining", "session-questions"],
         }}
+      />
+
+      <Button
+        customText="Update questions"
+        className="mb-8"
+        theme="clear"
+        callback={() =>
+          window.confirm(UPDATE_QUESTIONS_ALERT_TEXT)
+            ? dispatch({
+                type: "UPDATE_QUIZ_QUESTIONS_DATA",
+              })
+            : undefined
+        }
       />
     </div>
   );

@@ -11,7 +11,7 @@ links:
   ]
 ---
 
-Fork this repo `https://github.com/bot19/markdown-flashcards` and clone it. Make sure you have Node `v18`, go to the root directory and run `yarn`.
+Fork [this repo](https://github.com/bot19/markdown-flashcards) `github.com/bot19/markdown-flashcards` and clone it. Make sure you have Node `v18`, go to the root directory and run `yarn`.
 
 Update `src/config.ts` and add your .md files to `src/questions`.
 

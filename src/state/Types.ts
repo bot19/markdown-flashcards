@@ -98,10 +98,15 @@ type ActionUpdateQuizSessionRestart = {
   type: "UPDATE_QUIZ_SESSION_RESTART";
 };
 
+type ActionUpdateQuizQuestionsData = {
+  type: "UPDATE_QUIZ_QUESTIONS_DATA";
+};
+
 export type ReducerAction =
   | ActionUpdateQuizInit
   | ActionUpdateQuizSessionStart
   | ActionUpdateAnswerRight
   | ActionUpdateAnswerWrong
   | ActionUpdateQuizSessionEnd
-  | ActionUpdateQuizSessionRestart;
+  | ActionUpdateQuizSessionRestart
+  | ActionUpdateQuizQuestionsData;

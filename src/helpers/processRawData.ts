@@ -10,6 +10,7 @@ export const processRawData = (data: RawQsData): ProcessedQsData => {
     ...data.map((rawQ) => {
       return {
         ...rawQ,
+        // add key field to Q data obj, where name of file is without spaces
         key: rawQ.parent.name.replaceAll(" ", "-"),
       };
     }),
