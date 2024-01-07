@@ -71,7 +71,9 @@
   @apply text-sm md:text-base;
 }
 
-.answer > pre {
+.answer > pre,
+.answer > p > span > a > img,
+.answer > p > span > a > span {
   @apply rounded-xl;
   @apply overflow-hidden;
 }

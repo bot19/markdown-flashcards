@@ -17,7 +17,7 @@ Update `src/config.ts` and add your .md files to `src/questions`.
 
 Then head to `netlify.com`, connect your Github account with the cloned repository and deploy. My settings are below if you've never done this and need reference.
 
-(image)
+![example image](./media/example.jpeg)
 
 Now each time you add/edit the questions, just commit (to your netlify deploy branch) and it should automatically deploy. On the app, click the `New data` button to get your latest questions (note that this will reset your existing stats).
 

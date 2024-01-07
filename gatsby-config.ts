@@ -25,8 +25,21 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     {
       resolve: `gatsby-transformer-remark`,
-      options: {},
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1024,
+            },
+          },
+        ],
+      },
     },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {},
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
