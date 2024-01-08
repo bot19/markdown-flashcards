@@ -107,14 +107,14 @@ export const Layout = (props: ILayout) => {
 
 const Header = () => (
   <div className={classNames("pb-8 mb-8", "border-b border-b-gray-200")}>
-    <div className="tracking-tight mb-8">
+    <div className="mb-8">
       <p className="mb-2 font-medium text-gray-400">
         <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents
       </p>
 
       <h1
         className={classNames(
-          "font-bold text-gray-900",
+          "font-display font-semibold text-gray-900 tracking-tight",
           "text-3xl md:text-5xl xl:text-6xl"
         )}
       >

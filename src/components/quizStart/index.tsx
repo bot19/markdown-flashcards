@@ -18,7 +18,13 @@ export const QuizStart = ({
 }) => {
   return (
     <div>
-      <h2 className={classNames("font-bold mb-8", "text-2xl md:text-3xl")}>
+      <h2
+        className={classNames(
+          "font-display font-semibold tracking-tight",
+          "mb-8",
+          "text-2xl md:text-3xl"
+        )}
+      >
         Start
       </h2>
 

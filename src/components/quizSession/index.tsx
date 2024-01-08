@@ -35,8 +35,9 @@ export const QuizSession = ({
       <div className="pb-8 md:pb-16">
         <h1
           className={classNames(
-            "font-bold text-gray-900",
-            "text-3xl md:text-5xl"
+            "font-display font-semibold text-gray-900 tracking-tight",
+            "text-3xl md:text-5xl",
+            "!leading-[1.15]"
           )}
         >
           {slideData.frontmatter.title}
