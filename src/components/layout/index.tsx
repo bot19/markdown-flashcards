@@ -128,6 +128,16 @@ const Header = () => (
   </div>
 );
 
+const RESET_APP_ALERT_TEXT =
+  "Are you sure? You will lose all your progress stats and current place in the quiz.";
+
+const resetApp = () => {
+  if (window.confirm(RESET_APP_ALERT_TEXT)) {
+    localStorage.clear();
+    window.location.reload();
+  }
+};
+
 const Footer = () => (
   <footer
     className={classNames(
@@ -145,7 +155,13 @@ const Footer = () => (
       >
         {APP_CONFIG.quizInfo.linkText}
       </a>{" "}
-      / v{APP_CONFIG.quizInfo.version}
+      / v{APP_CONFIG.quizInfo.version} /{" "}
+      <button
+        className="text-black underline hover:no-underline"
+        onClick={resetApp}
+      >
+        reset app
+      </button>
     </p>
   </footer>
 );
