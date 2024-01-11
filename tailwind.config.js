@@ -24,13 +24,13 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: [
-        ["Mona Sans", ...defaultTheme.fontFamily.sans],
+        ['"Mona Sans"', ...defaultTheme.fontFamily.sans],
         {
           fontVariationSettings: '"ital" 10',
         },
       ],
       display: [
-        ["Hubot Sans", ...defaultTheme.fontFamily.sans],
+        ['"Hubot Sans"', ...defaultTheme.fontFamily.sans],
         {
           fontVariationSettings: '"ital" 10',
         },
