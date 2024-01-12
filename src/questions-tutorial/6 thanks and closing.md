@@ -1,5 +1,5 @@
 ---
-title: What's the point of this app?
+title: How do I get my data into this app and use it?
 category: introduction
 tags: [test, test1, test2]
 created: 2023-11-11
