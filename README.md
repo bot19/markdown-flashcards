@@ -1,63 +1,49 @@
 # Markdown Flashcards
 
-A Flashcard app that reads from markdown files. WIP. Will update this post `1.0.0` release.
+A Flashcard app that reads from markdown files.
+
+Build flashcards/quizzes from your Markdown files (personal wiki/knowledge base). Use this app to help commit info from your knowledge base to long-term memory.
+
+![MD Flashcard app preview](static/app-preview.gif)
+
+## 🌿 Branch: main
+
+Has latest stable release of the app and tutorial deck.
+
+## 🏁 Features/objectives
+
+1. Take markdown files as input and generate flashcards/quizzes
+2. Handle large decks by breaking it down to multiple quiz sessions
+3. Repeat incorrect questions as a cheap imitation of "spaced repetition"
+4. Accessible on any device (with internet)
+5. Can resume quiz progess
+6. Has basic stats
+7. Handles basic text content &amp; any code content
 
 ## 🖥️ Tech
 
-1. Gatsby.js (react, TS, graphql, SASS)
-2. Tachyons CSS
+1. Gatsby.js `v5.5` (react, TS, GraphQL, used as I was familiar with its ability to generate data from .md files and quickly publish online)
+2. Tailwind CSS `v3.3` (fast styling with utility-first CSS framework)
+3. highlight.js `v11.9` (code content syntax highlighting)
+4. External: Netlify (optional, used to host the app &amp; quickly deploy content updates)
 
-## 📄 How to use
+## 🚀 How to run
 
-1. Coming soon...
+1. Fork &amp; clone this repo
+2. Make sure you have Node `v18`, in terminal go to DIR &amp; run `yarn`
+3. On successful installation, run `yarn develop`
+4. Go through the tutorial deck to get familiar with the app &amp; how to update it to use your own content (or see: `src/questions-tutorial/6 thanks and closing.md`)
 
-<br>
-<br>
+## 📝 Notes
 
-# Gatsby minimal TypeScript starter
-
-## 🚀 Quick start
-
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
-
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
-
-2.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+- Any issues, questions or suggestions, let me know via github
+- Plans for future development, but could be a while...
+- App v1.1: 🛠️ fix: all TS errors
+- App v1.1: ✅ TS entire app
+- App v1.1: ✅ unit tests
+- App v1.x: ✅ view to see all questions wrong &amp; right
+- App v1.x: ✅ light dark theme (top level theming)
+- App v1.x: ✅ works with JSON obj of certain shape
+- App v1.x: ✅ categories
+- App v1.x: ✅ simple persistent analytics
+- App v1.x: ✅ cover overflow-y content container to have bottom shadow fade visual
