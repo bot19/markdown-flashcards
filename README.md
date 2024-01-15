@@ -1,6 +1,6 @@
 # Markdown Flashcards
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8d2ddcfd-a7a2-4a8d-afb1-3698fb2c1c82/deploy-status)](https://app.netlify.com/sites/mdfc-latest/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c9f863a9-ed49-421e-9436-e244ed0c02d7/deploy-status)](https://app.netlify.com/sites/mdfc-dev/deploys)
 
 A Flashcard app that reads from markdown files.
 
@@ -8,9 +8,9 @@ Build flashcards/quizzes from your Markdown files (personal wiki/knowledge base)
 
 ![MD Flashcard app preview](static/app-preview.gif)
 
-## 🌿 Branch: main
+## 🌿 Branch: release/1.0.0
 
-Has latest stable release of the app and tutorial deck, see it: [mdfc-latest.netlify.app](https://mdfc-latest.netlify.app/).
+Has `v1.0.0` release of the app and tutorial deck, see it: [mdfc-dev.netlify.app](https://mdfc-dev.netlify.app) (URL may contain a newer version of the app in the future should it be in development).
 
 ## 🏁 Features/objectives
 
