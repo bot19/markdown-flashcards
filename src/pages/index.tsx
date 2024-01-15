@@ -17,6 +17,8 @@ const QuizPage = (props: IQuizPage) => {
   // process raw data into shape we want
   const markDownData = processRawData(props.data?.questionsData?.nodes || []);
 
+  console.log("data", markDownData);
+
   const { state, dispatch } = useStateInit({
     questionsData: {
       nodes: markDownData,

@@ -25,8 +25,21 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     {
       resolve: `gatsby-transformer-remark`,
-      options: {},
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1024,
+            },
+          },
+        ],
+      },
     },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {},
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -47,9 +60,21 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "questions",
-        path: "./src/questions/",
+        path: "./src/questions-tutorial/",
       },
       __key: "questions",
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "G-6K9SJERN3F", // Google Analytics 4
+        ],
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: false,
+        },
+      },
     },
   ],
 };

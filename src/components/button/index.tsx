@@ -52,7 +52,7 @@ export const Button = (props: IButtonComponent) => {
       className={classNames(
         "inline-block",
         "min-w-[8rem] md:min-w-[10rem]",
-        "font-medium text-center",
+        "font-display font-medium tracking-tight text-center",
         "transition duration-200 ease",
         "focus:outline-none",
         // use non-null assertion operator to shut TS up, despite defaultProps...

@@ -18,7 +18,6 @@ export const useStateInit = (data: AllQuestions) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // if resuming from localStorage, already have Qs data, don't need to do (3)
-  // TODO: need a button to get new Qs data in case Qs got updated
   const isInit = useRef(appState ? false : true);
 
   // 3: update initial state with new data/content

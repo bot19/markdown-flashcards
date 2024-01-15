@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require("tailwindcss/plugin");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /**
  * Quick ref TW defaults:
@@ -15,12 +16,26 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   content: [
     "./src/components/**/*.{js,ts,tsx}",
-    "./src/css/**/*.{css}",
+    "./src/css/**/*.css",
     "./src/helpers/**/*.{js,ts,tsx}",
     "./src/pages/**/*.{js,ts,tsx}",
     "./src/state/**/*.{js,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: [
+        ['"Mona Sans"', ...defaultTheme.fontFamily.sans],
+        {
+          fontVariationSettings: '"ital" 10',
+        },
+      ],
+      display: [
+        ['"Hubot Sans"', ...defaultTheme.fontFamily.sans],
+        {
+          fontVariationSettings: '"ital" 10',
+        },
+      ],
+    },
     extend: {
       screens: {
         sm: "520px",

@@ -5,6 +5,7 @@ import { updateAnswerRight } from "./actionUpdateAnswerRight";
 import { updateAnswerWrong } from "./actionUpdateAnswerWrong";
 import { updateQuizSessionEnd } from "./actionUpdateQuizSessionEnd";
 import { updateQuizSessionRestart } from "./actionUpdateQuizSessionRestart";
+import { actionUpdateQuizQuestionsData } from "./actionUpdateQuizQuestionsData";
 
 export const reducer = (
   state: ReducerState,
@@ -28,6 +29,9 @@ export const reducer = (
 
     case "UPDATE_QUIZ_SESSION_RESTART":
       return { ...updateQuizSessionRestart(state) };
+
+    case "UPDATE_QUIZ_QUESTIONS_DATA":
+      return { ...actionUpdateQuizQuestionsData(state) };
 
     default:
       return { ...state };

@@ -74,7 +74,7 @@ export const Layout = (props: ILayout) => {
             </div>
           </div>
 
-          <div className={classNames("w-screen", "flex flex-col grow")}>
+          <div className={classNames("max-w-[100vw]", "flex flex-col grow")}>
             <div
               className={classNames(
                 "flex flex-col grow",
@@ -107,14 +107,14 @@ export const Layout = (props: ILayout) => {
 
 const Header = () => (
   <div className={classNames("pb-8 mb-8", "border-b border-b-gray-200")}>
-    <div className="tracking-tight mb-8">
+    <div className="mb-8">
       <p className="mb-2 font-medium text-gray-400">
         <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents
       </p>
 
       <h1
         className={classNames(
-          "font-bold text-gray-900",
+          "font-display font-semibold text-gray-900 tracking-tight",
           "text-3xl md:text-5xl xl:text-6xl"
         )}
       >
@@ -128,8 +128,24 @@ const Header = () => (
   </div>
 );
 
+const RESET_APP_ALERT_TEXT =
+  "Are you sure? You will lose all your progress stats and current place in the quiz.";
+
+const resetApp = () => {
+  if (window.confirm(RESET_APP_ALERT_TEXT)) {
+    localStorage.clear();
+    window.location.reload();
+  }
+};
+
 const Footer = () => (
-  <footer className={classNames("flex items-center", "h-16")}>
+  <footer
+    className={classNames(
+      "flex items-center",
+      "h-16",
+      "border-t border-b-gray-200"
+    )}
+  >
     <p className="text-gray-400">
       Made in {APP_CONFIG.quizInfo.year} with ♥ / Checkout on{" "}
       <a
@@ -138,8 +154,14 @@ const Footer = () => (
         className={classNames("text-black underline", "hover:no-underline")}
       >
         {APP_CONFIG.quizInfo.linkText}
-      </a>
-      .
+      </a>{" "}
+      / v{APP_CONFIG.quizInfo.version} /{" "}
+      <button
+        className="text-black underline hover:no-underline"
+        onClick={resetApp}
+      >
+        reset app
+      </button>
     </p>
   </footer>
 );
