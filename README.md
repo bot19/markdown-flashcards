@@ -18,7 +18,7 @@ Has latest stable release of the app and tutorial deck, see it: [mdfc-latest.net
 2. Handle large decks by breaking it down to multiple quiz sessions
 3. Repeat incorrect questions as a cheap imitation of "spaced repetition"
 4. Accessible on any device (with internet)
-5. Can resume quiz progess
+5. Can resume quiz progress
 6. Has basic stats
 7. Handles basic text content &amp; any code content
 
