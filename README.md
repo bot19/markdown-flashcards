@@ -1,6 +1,6 @@
 # Markdown Flashcards
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8d2ddcfd-a7a2-4a8d-afb1-3698fb2c1c82/deploy-status)](https://app.netlify.com/sites/mdfc-latest/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d2ddcfd-a7a2-4a8d-afb1-3698fb2c1c82/deploy-status)](https://app.netlify.com/sites/mdfc-main/deploys)
 
 A Flashcard app that reads from markdown files.
 
@@ -10,7 +10,7 @@ Build flashcards/quizzes from your Markdown files (personal wiki/knowledge base)
 
 ## 🌿 Branch: main
 
-Has latest stable release of the app and tutorial deck, see it: [mdfc-latest.netlify.app](https://mdfc-latest.netlify.app/).
+Has latest stable release of the app and tutorial deck, see it: [mdfc-main.netlify.app](https://mdfc-main.netlify.app/).
 
 ## 🏁 Features/objectives
 
@@ -40,9 +40,9 @@ Has latest stable release of the app and tutorial deck, see it: [mdfc-latest.net
 
 - Any issues, questions or suggestions, let me know via github
 - Plans for future development, but could be a while...
-- App v1.1: 🛠️ fix: all TS errors
-- App v1.1: ✅ TS entire app
-- App v1.1: ✅ unit tests
+- App v1.x: 🛠️ fix: all TS errors
+- App v1.x: ✅ TS entire app
+- App v1.x: ✅ unit tests
 - App v1.x: ✅ view to see all questions wrong &amp; right
 - App v1.x: ✅ light dark theme (top level theming)
 - App v1.x: ✅ works with JSON obj of certain shape

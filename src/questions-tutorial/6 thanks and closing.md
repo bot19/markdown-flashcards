@@ -32,7 +32,7 @@ Now it's time to update the app with your data/questions. (1) Update `src/config
 
 Then head to `netlify.com`, connect your Github account with the cloned repository, select appropriate branch and deploy. My settings are below if you've never done this and need reference:
 
-![My netlify app settings](./media/Build-deploy-Site-configuration-md-flashcards-Netlify.png)
+![My netlify app settings](./attachments/Build-deploy-Site-configuration-md-flashcards-Netlify.png)
 
 Now each time you add/edit the questions, just commit (to your netlify deploy branch) and it should automatically deploy. On the app, click the `Update questions` button to get your latest questions (this should work, if it doesn't, try the `reset app` link in the footer additionally).
 
