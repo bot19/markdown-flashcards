@@ -60,7 +60,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "questions",
-        path: "./src/questions-tutorial/",
+        path: "./src/questions/",
       },
       __key: "questions",
     },
