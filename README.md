@@ -49,3 +49,8 @@ Has latest stable release of the app and tutorial deck, see it: [mdfc-main.netli
 - App v1.x: ✅ categories
 - App v1.x: ✅ simple persistent analytics
 - App v1.x: ✅ cover overflow-y content container to have bottom shadow fade visual
+
+If you're coming from [Obsidian](https://obsidian.md/) you'll need to update the image syntax:
+
+1. In `/questions` folder, find all `![[` and replace with `![Image](./attachments/`
+2. find all `]]` and replace with `)`
