@@ -51,7 +51,14 @@ export const QuizSession = ({
         showAnswerElement={showAnswerElement}
       />
 
-      <div className={classNames("flex justify-center", "gap-4", "py-8")}>
+      <div
+        className={classNames(
+          "flex justify-center",
+          "gap-4",
+          "py-8",
+          "relative z-1"
+        )}
+      >
         <Button
           customText="Incorrect"
           theme="clear"
