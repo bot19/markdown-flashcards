@@ -155,7 +155,7 @@ const Footer = () => (
       >
         {APP_CONFIG.quizInfo.linkText}
       </a>{" "}
-      / v{APP_CONFIG.quizInfo.version} /{" "}
+      / v{APP_CONFIG.quizInfo.version} ({APP_CONFIG.quizInfo.build}) /{" "}
       <button
         className="text-black underline hover:no-underline"
         onClick={resetApp}

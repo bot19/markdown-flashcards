@@ -10,5 +10,6 @@ export const APP_CONFIG = {
     link: "https://github.com/bot19/markdown-flashcards",
     linkText: "Github",
     version: "0.1.0",
+    build: 1,
   },
 };
