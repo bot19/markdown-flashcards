@@ -12,5 +12,5 @@ links:
 >designed to be useful rather than decorative
 
 1. adjective
-2. "Like many factories, it's a very ugly utilitarian building.Like many factories, it's a very ugly utilitarian building."
+2. "Like many factories, it's a very ugly utilitarian building."
 

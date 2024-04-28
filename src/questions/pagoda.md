@@ -9,8 +9,8 @@ links:
   - https://dictionary.cambridge.org/dictionary/english/pagoda
 ---
 
->a tall religious building in Asia with many levels, each of which has a curved roof
+> a tall religious building in Asia with many levels, each of which has a curved roof
 
 1. noun
 
-![[pagoda_noun_004_1976.jpg]]
+![image](./attachments/pagoda_noun_004_1976.jpg)
