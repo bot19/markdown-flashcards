@@ -11,9 +11,6 @@ export const updateAnswerWrong = (
   state: ReducerState,
   questionKey: string
 ): ReducerState => {
-  const quizQsRemaining = [...state.currentQuiz.questionsRemaining].filter(
-    (qKey) => qKey !== questionKey
-  );
   const sessionQsRemaining = [
     ...state.currentSession.questionsRemaining,
   ].filter((qKey) => qKey !== questionKey);
@@ -26,7 +23,7 @@ export const updateAnswerWrong = (
     },
     currentQuiz: {
       ...state.currentQuiz,
-      // 2-4: keep track of all wrong answers, remove duplicates
+      // 2-4: keep track of all wrong answers, remove duplicates; see [1]
       incorrectAnswers: [
         ...new Set([...state.currentQuiz.incorrectAnswers, questionKey]),
       ],
@@ -51,3 +48,11 @@ export const updateAnswerWrong = (
 
   return newState;
 };
+
+/**
+ * [1] logic; quiz incorrectAnswers vs quizQsRemaining
+ * when you get answer wrong, add to incorrectAnswers list
+ * however "unique" it as only care if wrong 1st time (= incorrect in quiz)
+ *
+ * on incorrect, the question gets repeated; don't remove from quizQsRemaining
+ */
