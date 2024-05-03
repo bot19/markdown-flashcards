@@ -7,9 +7,12 @@ const SIZE = Object.freeze({
 });
 
 const THEME = Object.freeze({
-  primary: "bg-blue-600 hover:bg-blue-700 text-white",
-  success: "bg-green-600 hover:bg-green-700 text-white",
-  clear: "bg-white hover:bg-gray-100 text-gray-900 border border-gray-300",
+  primary:
+    "bg-blue-600 hover:bg-blue-700 text-white disabled:hover:bg-blue-600",
+  success:
+    "bg-green-600 hover:bg-green-700 text-white disabled:hover:bg-green-600",
+  clear:
+    "bg-white hover:bg-gray-100 text-gray-900 border border-gray-300 disabled:hover:bg-white",
 });
 
 // font-bold
@@ -31,6 +34,7 @@ export interface IButtonComponent extends IButton {
   size?: "md" | "lg";
   theme?: "primary" | "success" | "clear";
   url?: string;
+  disabled?: boolean;
 }
 
 const BUTTON_DEFAULT_PROPS = Object.freeze({
@@ -42,6 +46,7 @@ const BUTTON_DEFAULT_PROPS = Object.freeze({
  * button component
  *
  * either opens link or executates some functionality (ie: open modal)
+ * disabled: only visual indication for now; want to keep btn functionality
  */
 export const Button = (props: IButtonComponent) => {
   // target "_self" comes through craft as "", need to accommodate
@@ -55,6 +60,7 @@ export const Button = (props: IButtonComponent) => {
         "font-display font-medium tracking-tight text-center",
         "transition duration-200 ease",
         "focus:outline-none",
+        "disabled:opacity-30",
         // use non-null assertion operator to shut TS up, despite defaultProps...
         SIZE[props.size!],
         THEME[props.theme!],
@@ -64,6 +70,7 @@ export const Button = (props: IButtonComponent) => {
         if (props.url) return window.open(props.url, target);
         if (props.callback) return props.callback();
       }}
+      disabled={props.disabled ? props.disabled : false}
     >
       {props.customText}
     </button>
