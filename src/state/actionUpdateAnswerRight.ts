@@ -12,6 +12,7 @@ export const updateAnswerRight = (
   state: ReducerState,
   questionKey: string
 ): ReducerState => {
+  // see logic [2]
   const quizQsRemaining = [...state.currentQuiz.questionsRemaining].filter(
     (qKey) => qKey !== questionKey
   );
@@ -19,6 +20,7 @@ export const updateAnswerRight = (
     ...state.currentSession.questionsRemaining,
   ].filter((qKey) => qKey !== questionKey);
 
+  // see logic [1]
   const correctAnswersOnly = [...state.currentQuiz.incorrectAnswers].reduce(
     (correctAnswersArr, incorrectAnswer) =>
       correctAnswersArr.filter(
@@ -63,3 +65,25 @@ export const updateAnswerRight = (
 
   return newState;
 };
+
+/**
+ * [1] correctAnswersOnly
+ * initial state is correctAnswersOnly array and new correct question (Q)
+ * basically ensures correct Q only added if correct 1st time
+ * meaning you actually got it right, vs learning & getting it right
+ *
+ * it does this by checking it againt every Q in quiz incorrectAnswers
+ * obviously if your Q is in there, it means it's not correct 1st time
+ * otherwise add it
+ *
+ * when you get a Q correct 1st time, it is removed from quizQsRemaining
+ * since every Q correct won't need to be studied again
+ *
+ * check logic by devTools console with arrays; confirmed correct:
+ * quiz incorrectAnswers: ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+ * correctAnswersArr init: ['h', 'i', 'j', 'k', 'current-question']
+ *
+ * [2] quizQsRemaining
+ * this array starts off with all questions
+ * you just got question correct so remove it from remaining questions
+ */

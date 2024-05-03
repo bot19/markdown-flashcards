@@ -106,7 +106,7 @@ export const Layout = (props: ILayout) => {
 };
 
 const Header = () => (
-  <div className={classNames("pb-8 mb-8", "border-b border-b-gray-200")}>
+  <div className={classNames("pb-8", "border-b border-b-gray-200")}>
     <div className="mb-8">
       <p className="mb-2 font-medium text-gray-400">
         <span className="uppercase">{APP_CONFIG.quizInfo.author}</span> presents

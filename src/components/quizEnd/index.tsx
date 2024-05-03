@@ -19,7 +19,7 @@ export const QuizEnd = ({
   }, []);
 
   return (
-    <div>
+    <div className="py-8">
       <h2 className={classNames("font-bold mb-8", "text-2xl md:text-3xl")}>
         Quiz end
       </h2>

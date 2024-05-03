@@ -17,7 +17,7 @@ export const QuizStart = ({
   dispatch: React.Dispatch<ReducerAction>;
 }) => {
   return (
-    <div>
+    <div className="py-8">
       <h2
         className={classNames(
           "font-display font-semibold tracking-tight",
@@ -58,7 +58,6 @@ export const QuizStart = ({
 
       <Button
         customText="Update questions"
-        className="mb-8"
         theme="clear"
         callback={() =>
           window.confirm(UPDATE_QUESTIONS_ALERT_TEXT)
