@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Dispatch } from "react";
 import hljs from "highlight.js";
 import { ReducerAction, ReducerState } from "../../state/Types";
 import classNames from "classnames";
@@ -17,6 +17,8 @@ export const QuizSession = ({
   const slideData = state.currentSession.sessionQuestions.find(
     (qData) => qData.key === state.currrentQuestion.key
   )!;
+
+  const [showAnswer, setShowAnswer] = useState(false);
 
   /**
    * this hide/show state control and the setTimeout below
@@ -49,6 +51,8 @@ export const QuizSession = ({
         currentQuestion={state.general.quizStatus}
         answer={slideData.html}
         showAnswerElement={showAnswerElement}
+        showAnswer={showAnswer}
+        setShowAnswer={setShowAnswer}
       />
 
       <div
@@ -73,6 +77,7 @@ export const QuizSession = ({
               100
             );
           }}
+          disabled={!showAnswer}
         />
         <Button
           customText="Correct"
@@ -87,6 +92,7 @@ export const QuizSession = ({
               100
             );
           }}
+          disabled={!showAnswer}
         />
       </div>
     </div>
@@ -97,17 +103,17 @@ interface IAnswer {
   answer: string;
   currentQuestion: string | number;
   showAnswerElement: boolean;
+  showAnswer: boolean;
+  setShowAnswer: Dispatch<boolean>;
 }
 
 const Answer = (props: IAnswer) => {
-  const [showAnswer, setShowAnswer] = useState(false);
-
-  // TODO: meant to work in useEffect, but only works like this...
+  // NOTE: meant to work in useEffect, but only works like this...
   hljs.highlightAll();
 
   useEffect(() => {
     hljs.highlightAll();
-    setShowAnswer(false);
+    props.setShowAnswer(false);
   }, [props.currentQuestion]);
 
   return (
@@ -116,7 +122,7 @@ const Answer = (props: IAnswer) => {
         "grow",
         "flex flex-col",
         "items-center justify-center",
-        { "!items-start !justify-start": showAnswer },
+        { "!items-start !justify-start": props.showAnswer },
         "border-2 border-dashed border-gray-400 rounded-xl",
         "bg-gray-200",
         "h-0 overflow-y-scroll",
@@ -127,15 +133,15 @@ const Answer = (props: IAnswer) => {
       <Button
         customText="Click to show answer"
         theme="clear"
-        callback={() => setShowAnswer(true)}
-        className={classNames({ hidden: showAnswer })}
+        callback={() => props.setShowAnswer(true)}
+        className={classNames({ hidden: props.showAnswer })}
       />
 
       <div
         className={classNames(
           "p-4 md:p-8",
           "absolute inset-0 -z-10 invisible overflow-hidden",
-          { "w-full !static !visible overflow-visible z-0": showAnswer }
+          { "w-full !static !visible overflow-visible z-0": props.showAnswer }
         )}
       >
         <div

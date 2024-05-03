@@ -9,7 +9,7 @@ export const APP_CONFIG = {
     year: "2024",
     link: "https://github.com/bot19/markdown-flashcards",
     linkText: "Github",
-    version: "1.5.2", // see [1] for odd logic
+    version: "1.5.3", // see [1] for odd logic
     build: 1, // increment on data change, verify data deployed
   },
 };
