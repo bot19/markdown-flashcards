@@ -7,6 +7,12 @@ import { ProcessedQsData } from "../Types";
 
 /**
  * update state with changed questions data
+ *
+ * works because when you init app after adding new questions
+ * the new data is fetched and added to localStorage automatically
+ *
+ * attempts to reconcile state with new questions
+ * mileage may vary, worst case just reset all data & start again
  */
 export const actionUpdateQuizQuestionsData = (
   state: ReducerState
@@ -35,7 +41,7 @@ export const actionUpdateQuizQuestionsData = (
     ),
   ];
 
-  // all Qs not in correct/incorrect will be remaining
+  // all Qs not in correct/incorrect will be remaining; confirmed working
   const questionsRemaining = [
     ...allQuestions.filter(
       (remainingKey) =>
