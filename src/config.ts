@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-  questionsEachSession: 10,
+  questionsEachSession: 5,
   shuffleQuestions: true, // on false, will sort in alphabetical order
   quizInfo: {
     name: "I R spek Engrish",
@@ -10,7 +10,7 @@ export const APP_CONFIG = {
     link: "https://github.com/bot19/markdown-flashcards",
     linkText: "Github",
     version: "1.5.3", // see [1] for odd logic
-    build: 2, // increment on data change, verify data deployed
+    build: 3, // increment on data change, verify data deployed
   },
 };
 
