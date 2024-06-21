@@ -1,10 +1,10 @@
 export const APP_CONFIG = {
-  questionsEachSession: 3,
+  questionsEachSession: 5,
   shuffleQuestions: false, // on false, will sort in alphabetical order
   quizInfo: {
-    name: "Markdown Flashcards",
+    name: "Web technology dictionary",
     description:
-      "Build flashcards from your Markdown files. Use this app to help commit info from your knowledge base to long-term memory.",
+      "Master programming, web development, software engineering fundamentals and concepts.",
     author: "bot19",
     year: "2024",
     link: "https://github.com/bot19/markdown-flashcards",
