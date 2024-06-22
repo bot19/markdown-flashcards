@@ -6,9 +6,10 @@ type RawQuestionData = {
   frontmatter: {
     category: string;
     created: string;
+    keywords: string;
     links: string[];
     modified: string;
-    tags: string[];
+    order: number;
     title: string;
   };
   html: string;

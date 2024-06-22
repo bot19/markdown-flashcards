@@ -62,9 +62,10 @@ export const query = graphql`
         frontmatter {
           category
           created
+          keywords
           links
           modified
-          tags
+          order
           title
         }
         html
